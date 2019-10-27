@@ -34,6 +34,11 @@ class TripsController < ApplicationController
   end
 
   def edit
+    if @user.id == @trip.creator_id
+      render :edit
+    else
+      redirect_to user_trips_path(@user, @trip), alert: "You can only edit a trip that you created."
+    end
   end
 
   def update
@@ -66,7 +71,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :description, :start, :end, :group_trip, :creator)
+    params.require(:trip).permit(:title, :description, :start, :end, :group_trip, :creator_id)
   end
 
   def set_trip

@@ -13,7 +13,7 @@
 				   <div class="card-body" style="border: 1px solid grey">
 				   	<strong><p class="card-title text-center"><%= trip.title %>: <%= trip.start.strftime("%b %-d, %Y") %> - <%= trip.end.strftime("%b %-d, %Y") %></p></strong>
 				   	<p class="card-text text-center"><%= trip.description %></p>
-				   	<p class="card-text text-center">Trip Creator: <%= trip.creator %></p>
+				   	<p class="card-text text-center">Trip Creator: <%= User.find(trip.creator_id).name %></p>
 				   	<input id="user-<%= @user.id %>-trip-<%= trip.id %>" type="button" class="btn btn-success btn-block" value="Select Trip">
 				   </div>
 				</div>
@@ -82,6 +82,7 @@
 			this.start = new Date(obj.start)
 			this.end = new Date(obj.end)
 			this.groupTrip = obj.group_trip
+			this.creatorId = obj.creator_id
 			this.stops = obj.stops
 			this.users = obj.users
 		}
@@ -103,8 +104,6 @@ Trip.prototype.tripConfirmShow = function() {
 						<p>${this.description}</p>
 						<h5>Trip Dates</h5>
 						<p>${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p>
-						<h5>Trip Creator</h5>
-						<p>${this.creator}</p>
 						<h5>Stops</h5>
 						<ul class="stops-list">
 							${this.listStops()}
@@ -113,7 +112,7 @@ Trip.prototype.tripConfirmShow = function() {
 						<ul class="users-list">
 							${this.listUsers()}
 						</ul>
-						<form id="confirm_trip" action="/users/${this.id}/group_trip" method="post">
+						<form id="confirm_trip" action="/group_trip" method="post">
 							<input type="hidden" id="trip_id" name="trip[id]" value="${this.id}">
 							<input type="submit" class="btn btn-success btn-block" value="Confirm Trip">
 						</form>

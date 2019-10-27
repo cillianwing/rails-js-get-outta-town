@@ -14,6 +14,8 @@
             <%= f.check_box :group_trip, {disabled: true, checked: !!@trip.group_trip}, 'true', 'false' %><br />
           </div>
 
+          <%= f.hidden_field :creator_id, value: @trip.creator_id %>
+
           <%= f.submit "Update Trip", class: "form-group btn btn-success btn-block" %>
         <% end %>
       </div>

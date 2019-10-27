@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_072142) do
+ActiveRecord::Schema.define(version: 2019_10_27_080447) do
 
   create_table "accommodations", force: :cascade do |t|
     t.string "booking_num"
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 2019_10_27_072142) do
     t.date "start"
     t.date "end"
     t.boolean "group_trip"
-    t.string "creator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id"
   end
 
   create_table "trips_users", id: false, force: :cascade do |t|

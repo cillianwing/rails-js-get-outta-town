@@ -14,6 +14,6 @@ User.create(email: "test3@test.com", password: "password", password_confirmation
 @user2 = User.find_by(id: 2)
 @user3 = User.find_by(id: 3)
 
-@user1.trips.create(title: "Trip 1", description: "Trip 1 description.", start: (Date.today), end: (Date.today+7), group_trip: true, creator: @user1.name)
-@user2.trips.create(title: "Trip 2", description: "Trip 2 description.", start: (Date.today+8), end: (Date.today+15), group_trip: true, creator: @user2.name)
-@user3.trips.create(title: "Trip 3", description: "Trip 3 description.", start: (Date.today+16), end: (Date.today+25), group_trip: false, creator: @user3.name)
+@user1.trips.create(title: "Trip 1", description: "Trip 1 description.", start: (Date.today), end: (Date.today+7), group_trip: true, creator_id: @user1.id)
+@user2.trips.create(title: "Trip 2", description: "Trip 2 description.", start: (Date.today+8), end: (Date.today+15), group_trip: true, creator_id: @user2.id)
+@user3.trips.create(title: "Trip 3", description: "Trip 3 description.", start: (Date.today+16), end: (Date.today+25), group_trip: false, creator_id: @user3.id)
