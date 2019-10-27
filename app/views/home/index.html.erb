@@ -7,9 +7,9 @@
       </li>
     </ul>
 
-		<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {class: "form-inline my-2 my-lg-0"}) do |f| %>
-	    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mr-sm-2", placeholder: "Email" %>
-	    <%= f.password_field :password, autocomplete: "current-password", class: "form-control mr-sm-2", placeholder: "Password" %>
+		<%= form_for(@user, url: login_path, method: :post, :html => {class: "form-inline my-2 my-lg-0"}) do |f| %>
+	    <%= f.email_field :email, class: "form-control mr-sm-2", placeholder: "Email" %>
+	    <%= f.password_field :password, class: "form-control mr-sm-2", placeholder: "Password" %>
 		  <%= f.submit "Sign In", class: "btn btn-outline-light m-1 my-sm-0" %>
 	  <% end %>
     <input id="sign-up" class="btn btn-success m-1 my-sm-0" type="button" value="Sign Up">
@@ -90,25 +90,36 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-							  <%= render "devise/shared/error_messages", resource: resource %>
+							<%= form_for @user do |f| %>
 
 							  <div class="form-group">
 							    <%= f.label :email %><br />
-							    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+							    <%= f.email_field :email, class: "form-control" %>
 							  </div>
 
 							  <div class="form-group">
 							    <%= f.label :password %>
-							    <% if @minimum_password_length %>
-							    <em>(<%= @minimum_password_length %> characters minimum)</em>
-							    <% end %><br />
-							    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+							    <%= f.password_field :password, class: "form-control" %>
 							  </div>
 
 							  <div class="form-group">
-							    <%= f.label :password_confirmation %><br />
-							    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+							    <%= f.label :password_confirmation, "Confirm Password" %><br />
+							    <%= f.password_field :password_confirmation, class: "form-control" %>
+							  </div>
+
+							  <div class="form-group">
+							    <%= f.label :name %>
+							    <%= f.text_field :name, class: "form-control" %>
+							  </div>
+
+							  <div class="form-group">
+							    <%= f.label :location %>
+							    <%= f.text_field :location, class: "form-control" %>
+							  </div>
+
+							  <div class="form-group">
+							    <%= f.label :bio %>
+							    <%= f.text_area :bio, class: "form-control" %>
 							  </div>
 
 							  <%= f.submit "Sign up", class: "btn btn-success" %>

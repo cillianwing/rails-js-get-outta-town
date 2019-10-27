@@ -3,8 +3,6 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:index, :edit, :update, :destroy]
 
   def index
-    @user = current_user
-    @upcoming_trips = @user.trips.upcoming_trips
   end
 
   def new
@@ -25,16 +23,12 @@ class UsersController < ApplicationController
     if current_user.id != params[:id].to_i
       redirect_to users_path, alert: "You cannot view another user's profile."
     end
-    @past_trips = @user.trips.past_trips
-    @upcoming_trips = @user.trips.upcoming_trips
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to user_path
     else
@@ -43,7 +37,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @user.destroy
     redirect_to root_path
   end
@@ -51,7 +44,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-  	@user = current_user
   end
 
   def user_params
