@@ -1,0 +1,22 @@
+<%= render partial: '/shared/topnav', locals: { user: @user } %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4 pt-3">
+      <%= image_tag "global_travel.jpg", class: "img-responsive center-block", style: "width: 100%" %>
+      <div class="info-form border rounded pt-3">
+        <%= form_for @trip, url: user_trip_path, action: 'patch', class: "form-inline justify-content-center" do |f| %>
+
+          <%= render partial: 'form', locals: { f: f } %>
+
+          <div class="checkbox px-2 pb-2">
+            <%= f.label :group_trip, "Is this a group trip?" %>
+            <%= f.check_box :group_trip, {disabled: true, checked: !!@trip.group_trip}, 'true', 'false' %><br />
+          </div>
+
+          <%= f.submit "Update Trip", class: "form-group btn btn-success btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
