@@ -1,46 +1,91 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
-    </div>
+  <div class="sidebar-header">
+    <h3>Let's Get Outta Town!</h3>
+  </div>
 
-    <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
-                </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
+  <ul class="list-unstyled components">
+    <li>
+      <a href="<%= users_path %>">Home</a>
+    <li>
+      <a href="#tripsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Trips</a>
+      <ul class="collapse list-unstyled" id="tripsSubmenu">
+        <li>
+          <a id="user-trips">All My Trips</a>
         </li>
         <li>
-            <a href="#">About</a>
+          <a id="user-upcoming-trips">Upcoming Trips</a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
+          <a id="user-past-trips">Past Trips</a>
         </li>
         <li>
-            <a href="#">Portfolio</a>
+          <a id="create-new-trip">Create a New Trip</a>
         </li>
         <li>
-            <a href="#">Contact</a>
+          <a href="<%= group_trip_path %>">Join a Group Trip</a>
         </li>
-    </ul>
+      </ul>
+    </li>
+    <li>
+      <a href="#stopsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stops</a>
+      <ul class="collapse list-unstyled" id="stopsSubmenu">
+        <li>
+          <a id="">All My Stops</a>
+        </li>
+        <li>
+          <a id="">Specific Trip Stops</a>
+        </li>
+        <li>
+          <a id="">Add New Stop</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#flightsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Flights</a>
+      <ul class="collapse list-unstyled" id="flightsSubmenu">
+        <li>
+          <a id="">All My Flights</a>
+        </li>
+        <li>
+          <a id="">Specific Trip Flights</a>
+        </li>
+        <li>
+          <a id="">Add New Flight</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#activitiesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Activities</a>
+      <ul class="collapse list-unstyled" id="activitiesSubmenu">
+        <li>
+          <a id="">All My Activities</a>
+        </li>
+        <li>
+          <a id="">Specific Trip Activities</a>
+        </li>
+        <li>
+          <a id="">Add New Activity</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#accommodationsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Accommodations</a>
+      <ul class="collapse list-unstyled" id="accommodationsSubmenu">
+        <li>
+          <a id="">All My Accommodations</a>
+        </li>
+        <li>
+          <a id="">Specific Trip Accommodations</a>
+        </li>
+        <li>
+          <a id="">Add New Accommodation</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="list-unstyled CTAs">
+    <input id="user-profile" class="btn btn-success my-1" style="width: 100%" type="button" value="View Profile">
+    <input id="logout" class="btn btn-danger my-1" style="width: 100%" type="button" value="Log Out">
+  </ul>
 </nav>
