@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"><strong>Get Outta Town!</strong><span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {class: "form-inline my-2 my-lg-0"}) do |f| %>
+	    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mr-sm-2", placeholder: "Email" %>
+	    <%= f.password_field :password, autocomplete: "current-password", class: "form-control mr-sm-2", placeholder: "Password" %>
+		  <%= f.submit "Sign In", class: "btn btn-outline-light m-1 my-sm-0" %>
+	  <% end %>
+    <input id="sign-up" class="btn btn-success m-1 my-sm-0" type="button" value="Sign Up">
+  </div>
+</nav>
+
+<div id="modal-display" data-taget="#myModal"></div>
+<div id="carouselExampleIndicators" class="carousel slide mt-3 w-75 mx-auto" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    	<%= image_tag "trips.jpg", class: "d-block w-100 mx-auto", alt: "Trips Slide" %>
+    	  <div class="carousel-caption bg-secondary d-md-block">
+    			<h5>Keep track of your trips!</h5>
+    			<p>First slide caption description. This is where I would put some sort of description describing each aspect of the app.</p>
+  			</div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "flying.jpg", class: "d-block w-100 mx-auto", alt: "Flights Slide" %>
+    	  <div class="carousel-caption bg-secondary d-md-block">
+    			<h5>Keep track of your flights!</h5>
+    			<p>Second slide caption description. This is where I would put some sort of description describing each aspect of the app.</p>
+  			</div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "hiking.jpg", class: "d-block w-100 mx-auto", alt: "Activities Slide" %>
+    	  <div class="carousel-caption bg-secondary d-md-block">
+    			<h5>Keep track of your activities!</h5>
+    			<p>Third slide caption description. This is where I would put some sort of description describing each aspect of the app.</p>
+  			</div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "hotel-pillows.jpg", class: "d-block w-100 mx-auto", alt: "Accommodations Slide" %>
+    	  <div class="carousel-caption bg-secondary d-md-block">
+    			<h5>Keep track of your accommodations!</h5>
+    			<p>Fourth slide caption description. This is where I would put some sort of description describing each aspect of the app.</p>
+  			</div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+	$(function() {
+		console.log("page is fully loaded...");
+		listenForSignUpClick();
+	})
+
+	function listenForSignUpClick() {
+		$('input#sign-up').on('click', function() {
+			document.querySelector('#modal-display').innerHTML = signUpModal();
+			$('#myModal').modal();
+		})
+	}
+
+	function signUpModal() {
+		return (`
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class = "modal-header">
+							<h4 class="modal-title w-100 font-weight-bold">Please Sign Up Below!</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+							  <%= render "devise/shared/error_messages", resource: resource %>
+
+							  <div class="form-group">
+							    <%= f.label :email %><br />
+							    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+							  </div>
+
+							  <div class="form-group">
+							    <%= f.label :password %>
+							    <% if @minimum_password_length %>
+							    <em>(<%= @minimum_password_length %> characters minimum)</em>
+							    <% end %><br />
+							    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+							  </div>
+
+							  <div class="form-group">
+							    <%= f.label :password_confirmation %><br />
+							    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+							  </div>
+
+							  <%= f.submit "Sign up", class: "btn btn-success" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			`)
+	}
+
+</script>
