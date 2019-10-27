@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :show, :new, :edit, :group_trip]
+  before_action :set_user, only: [:index, :show, :new, :edit, :group_trip, :join_group]
+  skip_before_action :verify_authenticity_token
 
   def index
     @trips = @user.trips
@@ -65,7 +66,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :description, :start_date, :end_date, :group_trip, :creator)
+    params.require(:trip).permit(:title, :description, :start, :end, :group_trip, :creator)
   end
 
   def set_trip
