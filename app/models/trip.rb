@@ -1,6 +1,6 @@
 class Trip < ApplicationRecord
-  scope :past_trips, -> { where("end_date < ?", Date.today) }
-  scope :upcoming_trips, -> { where("start_date > ?", Date.today) }
+  scope :past_trips, -> { where("end < ?", Date.today) }
+  scope :upcoming_trips, -> { where("start > ?", Date.today) }
   scope :group_trips, -> { where(group_trip: true) }
 
   has_and_belongs_to_many :users
