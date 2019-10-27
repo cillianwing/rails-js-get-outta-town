@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create(email: "test@test.com", password: "password", password_confirmation: "password", name: "Test 1 Name", location: "Test1, Test", bio: "Test 1 bio.")
+User.create(email: "test2@test.com", password: "password", password_confirmation: "password", name: "Test 2 Name", location: "Test2, Test", bio: "Test 2 bio.")
+User.create(email: "test3@test.com", password: "password", password_confirmation: "password", name: "Test 3 Name", location: "Test3, Test", bio: "Test 3 bio.")
+
+@user1 = User.find_by(id: 1)
+@user2 = User.find_by(id: 2)
+@user3 = User.find_by(id: 3)
+
+@user1.trips.create(title: "Trip 1", description: "Trip 1 description.", start: (Date.today), end: (Date.today+7), group_trip: true, creator: @user1.name)
+@user2.trips.create(title: "Trip 2", description: "Trip 2 description.", start: (Date.today+8), end: (Date.today+15), group_trip: true, creator: @user2.name)
+@user3.trips.create(title: "Trip 3", description: "Trip 3 description.", start: (Date.today+16), end: (Date.today+25), group_trip: false, creator: @user3.name)

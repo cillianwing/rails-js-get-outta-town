@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  get '/group_trip', to: 'trips#group_trip'
+  post '/group_trip', to: 'trips#join_group'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
