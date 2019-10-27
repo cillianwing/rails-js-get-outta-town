@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  booking_num: MyString
+  type: 
+  name: MyString
+  address_1: MyString
+  address_2: MyString
+  check_in: 2019-10-27 00:55:16
+  check_out: 2019-10-27 00:55:16
+  cost: 9.99
+  location: MyString
+
+two:
+  booking_num: MyString
+  type: 
+  name: MyString
+  address_1: MyString
+  address_2: MyString
+  check_in: 2019-10-27 00:55:16
+  check_out: 2019-10-27 00:55:16
+  cost: 9.99
+  location: MyString

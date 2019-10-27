@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  confirm_num: MyString
+  airline: MyString
+  flight_num: MyString
+  departure: 2019-10-27 00:49:35
+  arrival: 2019-10-27 00:49:35
+  dep_loc: MyString
+  arr_loc: MyString
+  checked_bags: 1
+  cost: 9.99
+
+two:
+  confirm_num: MyString
+  airline: MyString
+  flight_num: MyString
+  departure: 2019-10-27 00:49:35
+  arrival: 2019-10-27 00:49:35
+  dep_loc: MyString
+  arr_loc: MyString
+  checked_bags: 1
+  cost: 9.99

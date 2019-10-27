@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  res_num: MyString
+  title: MyString
+  description: MyText
+  address_1: MyString
+  address_2: MyString
+  location: MyString
+  start: 2019-10-27 00:54:20
+  end: 2019-10-27 00:54:20
+  requirements: MyText
+  cost: 9.99
+
+two:
+  res_num: MyString
+  title: MyString
+  description: MyText
+  address_1: MyString
+  address_2: MyString
+  location: MyString
+  start: 2019-10-27 00:54:20
+  end: 2019-10-27 00:54:20
+  requirements: MyText
+  cost: 9.99

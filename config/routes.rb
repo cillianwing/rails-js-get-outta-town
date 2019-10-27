@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :accommodations
+  resources :activities
+  resources :reviews
+  resources :stops
+  resources :flights
+  resources :trips
   resources :users
 
   root 'home#index'
