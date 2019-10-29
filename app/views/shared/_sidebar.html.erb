@@ -92,7 +92,7 @@
   </ul>
 
   <ul class="list-unstyled CTAs">
-    <input id="user-profile" class="btn btn-success my-1" style="width: 100%" type="button" value="View Profile">
-    <input id="logout" class="btn btn-danger my-1" style="width: 100%" type="button" value="Log Out">
+    <%= link_to '<button id="user-profile" style="width: 100%" class="btn btn-success my-1" type="button">View Profile</button>'.html_safe, edit_user_path(@user) %>
+    <%= link_to '<button id="logout" style="width: 100%" class="btn btn-danger my-1" type="button">Logout</button>'.html_safe, logout_path %>
   </ul>
 </nav>
