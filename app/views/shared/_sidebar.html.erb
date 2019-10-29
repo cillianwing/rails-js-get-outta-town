@@ -1,13 +1,9 @@
 <nav id="sidebar">
-  <div class="sidebar-header">
-    <h3>Let's Get Outta Town!</h3>
-  </div>
-
   <ul class="list-unstyled components">
     <li>
-      <a href="<%= users_path %>">Home</a>
+      <a href="<%= users_path %>"><i class="fas fa-home"></i> Home</a>
     <li>
-      <a href="#tripsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Trips</a>
+      <a href="#tripsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-suitcase-rolling"></i> Trips</a>
       <ul class="collapse list-unstyled" id="tripsSubmenu">
         <li>
           <a id="user-trips">All My Trips</a>
@@ -27,7 +23,7 @@
       </ul>
     </li>
     <li>
-      <a href="#stopsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stops</a>
+      <a href="#stopsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-map-marker-alt"></i> Stops</a>
       <ul class="collapse list-unstyled" id="stopsSubmenu">
         <li>
           <a id="">All My Stops</a>
@@ -41,7 +37,7 @@
       </ul>
     </li>
     <li>
-      <a href="#flightsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Flights</a>
+      <a href="#flightsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-plane"></i> Flights</a>
       <ul class="collapse list-unstyled" id="flightsSubmenu">
         <li>
           <a id="">All My Flights</a>
@@ -55,7 +51,7 @@
       </ul>
     </li>
     <li>
-      <a href="#activitiesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Activities</a>
+      <a href="#activitiesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-hiking"></i> Activities</a>
       <ul class="collapse list-unstyled" id="activitiesSubmenu">
         <li>
           <a id="">All My Activities</a>
@@ -69,7 +65,7 @@
       </ul>
     </li>
     <li>
-      <a href="#accommodationsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Accommodations</a>
+      <a href="#accommodationsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-hotel"></i> Accommodations</a>
       <ul class="collapse list-unstyled" id="accommodationsSubmenu">
         <li>
           <a id="">All My Accommodations</a>
@@ -79,6 +75,17 @@
         </li>
         <li>
           <a id="">Add New Accommodation</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#reviewsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-edit"></i> Reviews</a>
+      <ul class="collapse list-unstyled" id="reviewsSubmenu">
+        <li>
+          <a id="">Reviews For Past Trips</a>
+        </li>
+        <li>
+          <a id="">Review One of Your Trips</a>
         </li>
       </ul>
     </li>
