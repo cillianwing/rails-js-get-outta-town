@@ -22,8 +22,10 @@ function getTrips(userId) {
 			let allTrips = []
 			data.forEach(function(x) {
 				allTrips.push(new Trip(x))
-				// call prototype to input html
 			})
+			$('div.row').html("");
+			$('div.js-render-content').html("");
+			$('div.js-render-content').html(showTripsIndex(allTrips));
 		}
 	})
 }
@@ -47,9 +49,11 @@ function getUpcomingTrips(userId) {
 				let startDate = x["start"].split("-").join(", ");
 				if (new Date(startDate) > new Date()) {
 					upcomingTrips.push(new Trip(x))
-					// call prototype to input html
 				}
 			})
+			$('div.row').html("");
+			$('div.js-render-content').html("");
+			$('div.js-render-content').html(showTripsIndex(upcomingTrips));
 		}
 	})
 }
@@ -73,10 +77,11 @@ function getPastTrips(userId) {
 				let endDate = x["end"].split("-").join(", ");
 				if (new Date(endDate) < new Date()) {
 					pastTrips.push(new Trip(x))
-					// call prototype to input html
 				}
 			})
-			debugger
+			$('div.row').html("");
+			$('div.js-render-content').html("");
+			$('div.js-render-content').html(showTripsIndex(pastTrips));
 		}
 	})
 }
@@ -99,4 +104,29 @@ class Trip {
 		this.stops = obj.stops
 		this.users = obj.users
 	}
+}
+
+Trip.prototype.tripCard = function() {
+	return (`
+			<div class="col-sm-4 mb-4">
+				<div class="card" style="border: 1px solid black">
+					<img src="/assets/global_travel.jpg" class="card-img-top">
+				</div>
+				<div class="card-body" style="border: 1px solid grey">
+					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
+					<p class="card-text text-center">${this.description}</p>
+				</div>
+			</div>
+		`)
+}
+
+function showTripsIndex(arr) {
+	let indexString = `<div class="row justify-content-center">`;
+	for (let i = 0; i < arr.length; i++) {
+		indexString += arr[i].tripCard();
+		if ((i + 1) % 3 === 0) {
+			indexString += (`</div><div class="row justify-content-center">`)
+		}
+	}
+	return indexString;
 }
