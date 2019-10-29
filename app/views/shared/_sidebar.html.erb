@@ -3,16 +3,16 @@
     <li>
       <a href="<%= users_path %>"><i class="fas fa-home"></i> Home</a>
     <li>
-      <a href="#tripsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-suitcase-rolling"></i> Trips</a>
+      <a id="trips-dropdown" name="<%= @user.id %>" href="#tripsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-suitcase-rolling"></i> Trips</a>
       <ul class="collapse list-unstyled" id="tripsSubmenu">
         <li>
           <a href="/users/<%= @user.id %>/trips" id="user-trips" name="<%= @user.id %>">All My Trips</a>
         </li>
         <li>
-          <a id="user-upcoming-trips">Upcoming Trips</a>
+          <a href="#" id="user-upcoming-trips" name="<%= @user.id %>">Upcoming Trips</a>
         </li>
         <li>
-          <a id="user-past-trips">Past Trips</a>
+          <a href="#" id="user-past-trips" name="<%= @user.id %>">Past Trips</a>
         </li>
         <li>
           <a id="user-new-trip">Create a New Trip</a>

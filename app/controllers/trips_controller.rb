@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :show, :new, :edit, :group_trip, :join_group]
+  before_action :set_user, only: [:index, :show, :new, :create, :edit, :group_trip, :join_group]
   skip_before_action :verify_authenticity_token
 
   def index
