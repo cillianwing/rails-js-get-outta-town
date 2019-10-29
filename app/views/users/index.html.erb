@@ -2,13 +2,49 @@
 
 	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
 
-	<div class="content">
+	<div class="container-fluid">
 
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
 
-		<h3>There will be a side bar to select all available info (trips, stops, etc.)</h3>
-		<h3>Also will be a "Summary Box" which will show various information/stats for the user's trips, stops, flights, etc.</h3>
-		<h3>This will have a lot of javascript</h3>
+		<div class="row justify-content-center">
+			<div class="col-6 py-2" style="border: 1px solid grey; border-radius: 20px">
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" id="pills-trips-tab" data-toggle="pill" href="#pills-trips" role="tab" aria-controls="pills-trips" aria-selected="true">Trips</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="pills-stops-tab" data-toggle="pill" href="#pills-stops" role="tab" aria-controls="pills-stops" aria-selected="false">Stops</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="pills-flights-tab" data-toggle="pill" href="#pills-flights" role="tab" aria-controls="pills-flights" aria-selected="false">Flights</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="pills-activities-tab" data-toggle="pill" href="#pills-activities" role="tab" aria-controls="pills-activities" aria-selected="true">Activities</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="pills-accommodations-tab" data-toggle="pill" href="#pills-accommodations" role="tab" aria-controls="pills-accommodations" aria-selected="true">Accommodations</a>
+				  </li>				  
+				</ul>
+				<div class="tab-content" id="pills-tabContent">
+				  <div class="tab-pane fade show active" id="pills-trips" role="tabpanel" aria-labelledby="pills-trips-tab">
+				  	Bunch of info for trips.
+				  </div>
+				  <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
+				  	Bunch of info for stops.
+				  </div>
+				  <div class="tab-pane fade" id="pills-flights" role="tabpanel" aria-labelledby="pills-flights-tab">
+				  	Bunch of info for flights.
+				  </div>
+				  <div class="tab-pane fade" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+				  	Bunch of info for activities.
+				  </div>
+				  <div class="tab-pane fade" id="pills-accommodations" role="tabpanel" aria-labelledby="pills-accommodations-tab">
+				  	Bunch of info for accommodations.
+				  </div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </div>
