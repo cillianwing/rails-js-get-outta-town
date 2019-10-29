@@ -4,8 +4,8 @@ $(function() {
 
 function listenForSignUpClick() {
 	$('input#sign-up').on('click', function() {
-		document.querySelector('#modal-display').innerHTML = signUpModal();
-		$('#myModal').modal();
+		$('#modal-display').html(signUpModal());
+		$('#myModal').modal('show');
 	})
 }
 

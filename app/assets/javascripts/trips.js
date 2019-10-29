@@ -87,7 +87,26 @@ function getPastTrips(userId) {
 }
 
 function listenForNewTripClick(userId) {
+	$('#user-new-trip').on('click', function(event) {
+		event.preventDefault();
+		$('#trip-modal-display').html(newTripModal(userId));
+		$('#tripModal').modal('show');
+		listenForNewTripCreation(userId);
+	})
+}
 
+function listenForNewTripCreation(userId) {
+	$('form#new_trip').submit(function(event) {
+		event.preventDefault();
+		let values = $(this).serialize();
+		debugger
+		let posting = $.post(`http://localhost:3000/users/${userId}/trips`, values)
+
+		posting.done(function(data) {
+			var newTrip = new Trip(data);
+		})
+
+	})
 }
 
 class Trip {
@@ -129,4 +148,60 @@ function showTripsIndex(arr) {
 		}
 	}
 	return indexString;
+}
+
+function newTripModal(userId) {
+	return (`
+		<div id="tripModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Create New Trip Below:</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="info-form border rounded pt-3">
+							<img class="img-responsive center-block" style="width: 100%" src="/assets/global_travel.jpg">
+							<div class="info-form border rounded pt-3">
+        				<form class="new_trip" id="new_trip" action="/users/${userId}/trips" accept-charset="UTF-8" method="post">
+
+          				<div class="form-group px-2">
+  									<label for="trip_title">Trip Title:</label>
+  									<input class="form-control" placeholder="i.e. Backpacking Thru Asia" type="text" name="trip[title]" id="trip_title">
+									</div>
+
+									<div class="form-group px-2">
+  									<label for="trip_description">Description:</label>
+  									<textarea class="form-control" placeholder="Please write a short description of your trip here!" name="trip[description]" id="trip_description"></textarea>
+									</div>
+
+									<div class="form-group px-2">
+									  <label for="trip_start">Start Date: </label>
+									  <input class="form-control" type="date" name="trip[start]" id="trip_start">
+									</div>
+
+									<div class="form-group px-2">
+									  <label for="trip_end">End Date: </label>
+									  <input class="form-control" type="date" name="trip[end]" id="trip_end">
+									</div>
+
+
+				          <div class="checkbox px-2 pb-2">
+				            <label for="trip_group_trip">Is this a group trip?</label>
+				            <input name="trip[group_trip]" type="hidden" value="false"><input type="checkbox" value="true" name="trip[group_trip]" id="trip_group_trip">
+				          </div>
+
+          				<input value="1" type="hidden" name="trip[creator_id]" id="trip_creator_id">
+
+          				<input id="trip-submit" type="submit" name="commit" value="Create Trip" class="form-group btn btn-success btn-block" data-disable-with="Create Trip">
+								</form>      
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		`)
 }

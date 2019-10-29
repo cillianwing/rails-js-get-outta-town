@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:index, :edit, :update, :destroy]
 
   def index
+    @trip = Trip.new
   end
 
   def new

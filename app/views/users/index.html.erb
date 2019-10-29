@@ -6,6 +6,7 @@
 
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
 
+		<div id="trip-modal-display" data-taget="#tripModal" name="<%= @user.id %>"></div>
 		<div class="js-render-content"></div>
 		<div class="row justify-content-center">
 			<div class="col-6 py-2" style="border: 1px solid grey; border-radius: 20px">
