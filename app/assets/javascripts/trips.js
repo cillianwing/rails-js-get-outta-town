@@ -207,7 +207,7 @@ function newTripModal(userId) {
 }
 
 function listenForGroupTripClick() {
-	$('input').on('click', function(event) {
+	$('input#group-trip').on('click', function(event) {
 		event.preventDefault();
 		let path = $('input')["0"].name.split('-');
 		let userId = path[1];
