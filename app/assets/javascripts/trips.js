@@ -3,6 +3,7 @@ $(function() {
 	listenForUpcomingTripsClick();
 	listenForPastTripsClick();
 	listenForNewTripClick();
+	listenForGroupTripClick();
 })
 
 function listenForAllTripsClick() {
@@ -99,8 +100,7 @@ function listenForNewTripCreation(userId) {
 	$('form#new_trip').submit(function(event) {
 		event.preventDefault();
 		let values = $(this).serialize();
-		debugger
-		let posting = $.post(`http://localhost:3000/users/${userId}/trips`, values)
+		let posting = $.post(`http://localhost:3000/users/${userId}/trips`, values);
 
 		posting.done(function(data) {
 			var newTrip = new Trip(data);
@@ -204,4 +204,93 @@ function newTripModal(userId) {
 			</div>
 		</div>
 		`)
+}
+
+function listenForTripConfirm(userId, newTrip) {
+	$('form#confirm_trip').submit(function(event) {
+		event.preventDefault();
+		let values = $(this).serialize();
+		let posting = $.post(`http://localhost:3000/group_trip`, values)
+
+		posting.done(function(data) {
+			var updatedGroupTrip = new Trip(data)
+			document.querySelector('div.col-sm-4').innerHTML = '';
+			$('#myModal').modal('hide');
+			document.querySelector('div#groupTripShow').innerHTML = updatedGroupTrip.groupTripShow();
+		})
+	})
+}
+
+Trip.prototype.tripConfirmShow = function() {
+	return (`
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">${this.title}</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h5>Description</h5>
+						<p>${this.description}</p>
+						<h5>Trip Dates</h5>
+						<p>${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p>
+						<h5>Stops</h5>
+						<ul class="stops-list">
+							${this.listStops()}
+						</ul>
+						<h5>Trip Companions</h5>
+						<ul class="users-list">
+							${this.listUsers()}
+						</ul>
+						<form id="confirm_trip" action="/group_trip" method="post">
+							<input type="hidden" id="trip_id" name="trip[id]" value="${this.id}">
+							<input type="submit" class="btn btn-success btn-block" value="Confirm Trip">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	`)
+}
+
+Trip.prototype.groupTripShow = function() {
+	return (`
+		<div class="container">
+			<div class="row">
+				<div class="col-4 center-block">
+					<div class="card" style="border: 1px solid black">
+						<img src="/assets/global_travel.jpg" class="card-img-top">
+					</div>
+				   <div class="card-body" style="border: 1px solid grey">
+				   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
+				   	<p class="card-text text-center">${this.description}</p>
+				   </div>
+			   </div>
+			</div>
+		</div>
+	`)
+}
+
+Trip.prototype.listStops = function() {
+	stopsString = ""
+	if (this.stops.length === 0) {
+		stopsString += "<li>No stops added yet</li>";
+	}
+	else {
+		this.stops.forEach(function(array) {
+			stopsString += "<li>" + array.location + "</li>";
+		})
+	}
+	return stopsString
+}
+
+Trip.prototype.listUsers = function() {
+	usersString = ""
+	this.users.forEach(function(hash) {
+		usersString += "<li>" + hash.name + "</li>";
+	})
+	return usersString
 }
