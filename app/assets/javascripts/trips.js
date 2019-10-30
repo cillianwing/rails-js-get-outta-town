@@ -206,6 +206,16 @@ function newTripModal(userId) {
 		`)
 }
 
+function listenForGroupTripClick() {
+	$('input').on('click', function(event) {
+		event.preventDefault();
+		let path = $('input')["0"].name.split('-');
+		let userId = path[1];
+		let tripId = path[3];
+		getTrip(userId, tripId);
+	})
+}
+
 function listenForTripConfirm(userId, newTrip) {
 	$('form#confirm_trip').submit(function(event) {
 		event.preventDefault();
