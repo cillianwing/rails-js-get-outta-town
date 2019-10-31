@@ -15,4 +15,33 @@ class Trip < ApplicationRecord
 
   has_many :bookings
   has_many :accommodations, through: :bookings
+
+  def select_image
+    month = self.start.to_s.split("-")[1].to_i
+    if month == 1
+      image_url = "january.jpg"
+    elsif month == 2
+      image_url = "february.jpg"
+    elsif month == 3
+      image_url = "march.jpg"
+    elsif month == 4
+      image_url = "april.jpg"
+    elsif month == 5
+      image_url = "may.jpg"
+    elsif month == 6
+      image_url = "june.jpg"
+    elsif month == 7
+      image_url = "july.jpg"
+    elsif month == 8
+      image_url = "august.jpg"
+    elsif month == 9
+      image_url = "september.jpg"
+    elsif month == 10
+      image_url = "october.jpg"
+    elsif month == 11
+      image_url = "november.jpg"
+    elsif month == 12
+      image_url = "december.jpg"
+    end
+  end
 end

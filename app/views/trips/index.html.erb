@@ -1,11 +1,13 @@
-<%= render partial: '/shared/topnav', locals: { user: @user } %>
+<div class="wrapper">
+	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
 
-<div class="container">
-	<div class="row">
+	<div class="container-fluid">
+		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+		<div class="row justify-content-center">
 		<% @trips.each_with_index do |trip, index| %>
 			<div class="col-sm-4">
 				<div class="card" style="border: 1px solid black">
-					<%= image_tag "global_travel.jpg", class: "card-img-top" %>
+					<%= image_tag trip.select_image, class: "card-img-top" %>
 				</div>
 			   <div class="card-body" style="border: 1px solid grey">
 			   	<strong><p class="card-title text-center"><%= trip.title %>: <%= trip.start.strftime("%b %-d, %Y") %> - <%= trip.end.strftime("%b %-d, %Y") %></p></strong>
@@ -18,5 +20,6 @@
 				</div>
 			<% end %>
 		<% end %>
+		</div>
 	</div>
 </div>

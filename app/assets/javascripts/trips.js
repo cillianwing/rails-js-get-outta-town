@@ -137,7 +137,7 @@ Trip.prototype.tripCard = function() {
 	return (`
 			<div class="col-sm-4 mb-4">
 				<div class="card" style="border: 1px solid black">
-					<img src="/assets/global_travel.jpg" class="card-img-top">
+					<img src="/assets/${this.imageSelect()}" class="card-img-top">
 				</div>
 				<div class="card-body" style="border: 1px solid grey">
 					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
@@ -219,7 +219,7 @@ function newTripShow(trip) {
 			<div class="row justify-content-center">
 				<div class="col-4">
 					<div class="card" style="border: 1px solid black">
-						<img src="/assets/global_travel.jpg" class="card-img-top">
+						<img src="/assets/${this.imageSelect()}" class="card-img-top">
 					</div>
 				   <div class="card-body" style="border: 1px solid grey">
 				   	<strong><p class="card-title text-center">${trip.title}: ${trip.start} - ${trip.end}</p></strong>
@@ -306,7 +306,7 @@ Trip.prototype.tripConfirmShow = function() {
 Trip.prototype.groupTripShow = function() {
 	return (`
 		<div class="card" style="border: 1px solid black">
-			<img src="/assets/global_travel.jpg" class="card-img-top">
+			<img src="/assets/${this.imageSelect()}" class="card-img-top">
 		</div>
 	   <div class="card-body" style="border: 1px solid grey">
 	   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
@@ -334,4 +334,33 @@ Trip.prototype.listUsers = function() {
 		usersString += "<li>" + hash.name + "</li>";
 	})
 	return usersString
+}
+
+Trip.prototype.imageSelect = function() {
+	let month = this.start.toLocaleDateString().split("/")[0]
+	if (month === "1") {
+		return "january.jpg"
+	} else if (month === "2") {
+		return "february.jpg"
+	} else if (month === "3") {
+		return "march.jpg"
+	} else if (month === "4") {
+		return "april.jpg"
+	} else if (month === "5") {
+		return "may.jpg"
+	} else if (month === "6") {
+		return "june.jpg"
+	} else if (month === "7") {
+		return "july.jpg"
+	} else if (month === "8") {
+		return "august.jpg"
+	} else if (month === "9") {
+		return "september.jpg"
+	} else if (month === "10") {
+		return "october.jpg"
+	} else if (month === "11") {
+		return "november.jpg"
+	} else if (month === "12") {
+		return "december.jpg"
+	}
 }
