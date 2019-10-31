@@ -3,15 +3,16 @@ $(function() {
 })
 
 function listenForSignUpClick() {
-	$('input#sign-up').on('click', function() {
-		$('#modal-display').html(signUpModal());
-		$('#myModal').modal('show');
+	$('input#sign-up').on('click', function(event) {
+		event.preventDefault();
+		$('#signup-modal-display').html(signUpModal());
+		$('#signupModal').modal('show');
 	})
 }
 
 function signUpModal() {
-	return (`
-		<div id="myModal" class="modal fade" role="dialog">
+	let str = `
+		<div id="signupModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class = "modal-header">
@@ -21,43 +22,44 @@ function signUpModal() {
 						</button>
 					</div>
 					<div class="modal-body">
-						<%= form_for @user do |f| %>
+						<form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
 
-						  <div class="form-group">
-						    <%= f.label :email %><br />
-						    <%= f.email_field :email, class: "form-control" %>
+							<div class="form-group px-2">
+							  <label for="user_email">Email:</label>
+							  <input class="form-control" type="email" name="user[email]" id="user_email">
+							</div>
+
+						  <div class="form-group px-2">
+						    <label for="user_password">Password</label>
+						    <input class="form-control" type="password" name="user[password]" id="user_password">
 						  </div>
 
-						  <div class="form-group">
-						    <%= f.label :password %>
-						    <%= f.password_field :password, class: "form-control" %>
+						  <div class="form-group px-2">
+						    <label for="user_password_confirmation">Confirm Password</label><br>
+						    <input class="form-control" type="password" name="user[password_confirmation]" id="user_password_confirmation">
 						  </div>
 
-						  <div class="form-group">
-						    <%= f.label :password_confirmation, "Confirm Password" %><br />
-						    <%= f.password_field :password_confirmation, class: "form-control" %>
-						  </div>
+							<div class="form-group px-2">
+							  <label for="user_name">Name: </label>
+							  <input class="form-control" type="text" name="user[name]" id="user_name">
+							</div>
 
-						  <div class="form-group">
-						    <%= f.label :name %>
-						    <%= f.text_field :name, class: "form-control" %>
-						  </div>
+							<div class="form-group px-2">
+							  <label for="user_location">Location: </label>
+							  <input class="form-control" type="text" name="user[location]" id="user_location">
+							</div>
 
-						  <div class="form-group">
-						    <%= f.label :location %>
-						    <%= f.text_field :location, class: "form-control" %>
-						  </div>
+							<div class="form-group px-2">
+							  <label for="user_bio">Biography:</label>
+							  <textarea class="form-control" name="user[bio]" id="user_bio"></textarea>
+							</div>
 
-						  <div class="form-group">
-						    <%= f.label :bio %>
-						    <%= f.text_area :bio, class: "form-control" %>
-						  </div>
-
-						  <%= f.submit "Sign up", class: "btn btn-success" %>
-						<% end %>
+		          <input type="submit" name="commit" value="Create User" class="form-group btn btn-success btn-block" data-disable-with="Update User">
+						</form>				
 					</div>
 				</div>
 			</div>
 		</div>
-		`)
+		`
+		return str;
 }

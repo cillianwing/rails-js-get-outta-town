@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :require_login, only: [:index, :show, :edit, :update, :destroy]
 	before_action :set_user, only: [:index, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @trip = Trip.new
