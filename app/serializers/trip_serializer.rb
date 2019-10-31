@@ -3,4 +3,7 @@ class TripSerializer < ActiveModel::Serializer
 
   has_many :stops
   has_many :users
+  has_many :flights
+  has_many :activities
+  has_many :accommodations
 end

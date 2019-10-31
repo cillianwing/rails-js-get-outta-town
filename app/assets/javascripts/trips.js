@@ -130,6 +130,9 @@ class Trip {
 		this.creatorId = obj.creator_id
 		this.stops = obj.stops
 		this.users = obj.users
+		this.flights = obj.flights
+		this.activities = obj.activities
+		this.accommodations = obj.accommodations
 	}
 }
 
