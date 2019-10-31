@@ -236,7 +236,21 @@ function listenForGroupTripClick() {
 		let path = $('input')["0"].name.split('-');
 		let userId = path[1];
 		let tripId = path[3];
-		getTrip(userId, tripId);
+		getGroupTrip(userId, tripId);
+	})
+}
+
+function getGroupTrip(userId, tripId) {
+	$.ajax({
+		url: 'http://localhost:3000/users/' + userId + '/trips/' + tripId,
+		method: 'get',
+		dataType: 'json',
+		success: function(data) {
+			let newTrip = new Trip(data)
+			document.querySelector('#group-trip-modal-display').innerHTML = newTrip.tripConfirmShow()
+			$('#groupTripModal').modal('show')
+			listenForTripConfirm(userId, newTrip);
+		}
 	})
 }
 
@@ -247,17 +261,16 @@ function listenForTripConfirm(userId, newTrip) {
 		let posting = $.post(`http://localhost:3000/group_trip`, values)
 
 		posting.done(function(data) {
-			var updatedGroupTrip = new Trip(data)
-			document.querySelector('div.col-sm-4').innerHTML = '';
-			$('#myModal').modal('hide');
-			document.querySelector('div#groupTripShow').innerHTML = updatedGroupTrip.groupTripShow();
+			let updatedGroupTrip = new Trip(data)
+			$('#groupTripModal').modal('hide');
+			$('div.col-sm-4').html(updatedGroupTrip.groupTripShow());
 		})
 	})
 }
 
 Trip.prototype.tripConfirmShow = function() {
 	return (`
-		<div id="myModal" class="modal fade" role="dialog">
+		<div id="groupTripModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -292,19 +305,13 @@ Trip.prototype.tripConfirmShow = function() {
 
 Trip.prototype.groupTripShow = function() {
 	return (`
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-4">
-					<div class="card" style="border: 1px solid black">
-						<img src="/assets/global_travel.jpg" class="card-img-top">
-					</div>
-				   <div class="card-body" style="border: 1px solid grey">
-				   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
-				   	<p class="card-text text-center">${this.description}</p>
-				   </div>
-			   </div>
-			</div>
+		<div class="card" style="border: 1px solid black">
+			<img src="/assets/global_travel.jpg" class="card-img-top">
 		</div>
+	   <div class="card-body" style="border: 1px solid grey">
+	   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
+	   	<p class="card-text text-center">${this.description}</p>
+	   </div>
 	`)
 }
 

@@ -3,7 +3,7 @@
 
 	<div class="container-fluid">
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
-		<div class="row">
+		<div class="row justify-content-center">
 			<% if @trips.empty? %>
 				<h5>No group trips with spots available.</h5></div>
 			<% else %>
@@ -26,8 +26,8 @@
 					<% end %>
 				<% end %>
 			<% end %>
+			<div id="groupTripShow"></div>
 		</div>
-		<div id="modal-display" data-taget="#myModal"></div>
-		<div id="groupTripShow"></div>
+		<div id="group-trip-modal-display" data-taget="#groupTripModal"></div>
 	</div>
 </div>
