@@ -140,7 +140,7 @@ Trip.prototype.tripCard = function() {
 					<img src="/assets/${this.imageSelect()}" class="card-img-top">
 				</div>
 				<div class="card-body" style="border: 1px solid grey">
-					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
+					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
 					<p class="card-text text-center">${this.description}</p>
 				</div>
 			</div>
@@ -283,7 +283,7 @@ Trip.prototype.tripConfirmShow = function() {
 						<h5>Description</h5>
 						<p>${this.description}</p>
 						<h5>Trip Dates</h5>
-						<p>${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p>
+						<p>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
 						<h5>Stops</h5>
 						<ul class="stops-list">
 							${this.listStops()}
@@ -309,7 +309,7 @@ Trip.prototype.groupTripShow = function() {
 			<img src="/assets/${this.imageSelect()}" class="card-img-top">
 		</div>
 	   <div class="card-body" style="border: 1px solid grey">
-	   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString()} - ${this.end.toLocaleDateString()}</p></strong>
+	   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
 	   	<p class="card-text text-center">${this.description}</p>
 	   </div>
 	`)
