@@ -8,13 +8,19 @@ class Trip < ApplicationRecord
   has_many :reviews
 
   has_many :tickets
-  has_many :transportations, through: :tickets
+  has_many :flights, through: :tickets
 
   has_many :reservations
   has_many :activities, through: :reservations
 
   has_many :bookings
   has_many :accommodations, through: :bookings
+
+  def travellers
+    self.users.collect do |user|
+      user.name
+    end
+  end
 
   def select_image
     month = self.start.to_s.split("-")[1].to_i
