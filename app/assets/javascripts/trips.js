@@ -100,10 +100,18 @@ function listenForNewTripCreation(userId) {
 	$('form#new_trip').submit(function(event) {
 		event.preventDefault();
 		let values = $(this).serialize();
-		let posting = $.post(`http://localhost:3000/users/${userId}/trips`, values);
-
-		posting.done(function(data) {
-			var newTrip = new Trip(data);
+		$.ajax({
+			type: "POST",
+			url: `http://localhost:3000/users/${userId}/trips`,
+			data: values,
+			dataType: "json",
+			success(data) {
+				let post = data
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html(newTripShow(data));
+				$('#tripModal').modal('hide');
+			}
 		})
 
 	})
@@ -206,6 +214,22 @@ function newTripModal(userId) {
 		`)
 }
 
+function newTripShow(trip) {
+	return (`
+			<div class="row justify-content-center">
+				<div class="col-4">
+					<div class="card" style="border: 1px solid black">
+						<img src="/assets/global_travel.jpg" class="card-img-top">
+					</div>
+				   <div class="card-body" style="border: 1px solid grey">
+				   	<strong><p class="card-title text-center">${trip.title}: ${trip.start} - ${trip.end}</p></strong>
+				   	<p class="card-text text-center">${trip.description}</p>
+				   </div>
+			   </div>
+			</div>
+	`)
+}
+
 function listenForGroupTripClick() {
 	$('input#group-trip').on('click', function(event) {
 		event.preventDefault();
@@ -269,8 +293,8 @@ Trip.prototype.tripConfirmShow = function() {
 Trip.prototype.groupTripShow = function() {
 	return (`
 		<div class="container">
-			<div class="row">
-				<div class="col-4 center-block">
+			<div class="row justify-content-center">
+				<div class="col-4">
 					<div class="card" style="border: 1px solid black">
 						<img src="/assets/global_travel.jpg" class="card-img-top">
 					</div>
