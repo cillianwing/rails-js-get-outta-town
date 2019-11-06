@@ -173,7 +173,7 @@ function showTripsIndex(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		indexString += arr[i].tripCard();
 		if ((i + 1) % 3 === 0) {
-			indexString += (`</div><div class="row justify-content-center">`)
+			indexString += (`</div><div class="row justify-content-center mb-2">`)
 		}
 	}
 	return indexString;

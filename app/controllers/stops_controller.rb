@@ -1,6 +1,6 @@
 class StopsController < ApplicationController
 	before_action :set_stop, only: [:show, :edit, :update, :destroy]
-  before_action :set_trip
+  before_action :set_trip, except: [:all_stops]
   before_action :set_user
   before_action :require_login
   skip_before_action :verify_authenticity_token
@@ -50,6 +50,15 @@ class StopsController < ApplicationController
   def destroy
     @stop.destroy
     redirect_to trip_stops_path(@user)
+  end
+
+  def all_stops
+    @stops = @user.trips.collect do |trip| 
+      trip.stops.each do |stop|
+        stop 
+      end
+    end.flatten
+    flash[:warning] = "You do not have any stops for any trips!" if @stops.length == 0
   end
 
   private

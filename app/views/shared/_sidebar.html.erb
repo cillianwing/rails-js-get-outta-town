@@ -26,7 +26,7 @@
       <a href="#stopsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-map-marker-alt"></i> Stops</a>
       <ul class="collapse list-unstyled" id="stopsSubmenu">
         <li>
-          <a id="">All My Stops</a>
+          <%= link_to "All My Stops", all_stops_path(@user) %>
         </li>
         <li>
           <a id="">Specific Trip Stops</a>

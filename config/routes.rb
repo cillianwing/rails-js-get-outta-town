@@ -13,10 +13,14 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+
   get '/group_trip', to: 'trips#group_trip'
   post '/group_trip', to: 'trips#join_group'
+
+  get '/users/:id/all_stops', to: 'stops#all_stops', as: 'all_stops'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
