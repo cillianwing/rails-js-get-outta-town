@@ -15,7 +15,9 @@
 
 <div class="form-group px-2">
   <%= f.label :restrictions, "Restrictions:" %>
+  <a id="popoverData" class="btn" href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages.html" data-content='Search travel restrictions here.' rel="popover" data-placement="right" data-trigger="hover" target="_blank"><i class="far fa-question-circle"></i></a>
   <%= f.text_area :restrictions, class: "form-control", placeholder: "Please list any restrictions for travelling to this part of the world." %>
+
 </div>
 
 <%= f.hidden_field :trip_id, value: @trip.id %>

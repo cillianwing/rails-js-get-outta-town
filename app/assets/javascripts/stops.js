@@ -1,5 +1,6 @@
 $(function() {
 	listenForTripStopsClick();
+	$('#popoverData').popover();
 })
 
 function listenForTripStopsClick() {
@@ -9,3 +10,4 @@ function listenForTripStopsClick() {
 		getTripStops(userId)
 	})
 }
+
