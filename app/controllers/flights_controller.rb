@@ -63,7 +63,7 @@ class FlightsController < ApplicationController
 
   private
 
-  def flights_params
+  def flight_params
     params.require(:flight).permit(:confirm_num, :airline, :flight_num, :departure, :arrival, :dep_loc, :arr_loc, :checked_bags, :cost)
   end
 
