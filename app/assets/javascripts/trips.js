@@ -24,9 +24,15 @@ function getTrips(userId) {
 			data.forEach(function(x) {
 				allTrips.push(new Trip(x))
 			})
-			$('div.row').html("");
-			$('div.js-render-content').html("");
-			$('div.js-render-content').html(showTripsIndex(allTrips));
+			if (allTrips.length === 0) {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html("<div class='alert alert-warning col-4 text-center mx-auto'>You have not added any trips yet!<div>");				
+			} else {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html(showTripsIndex(allTrips));
+			}
 		}
 	})
 }
@@ -52,9 +58,15 @@ function getUpcomingTrips(userId) {
 					upcomingTrips.push(new Trip(x))
 				}
 			})
-			$('div.row').html("");
-			$('div.js-render-content').html("");
-			$('div.js-render-content').html(showTripsIndex(upcomingTrips));
+			if (upcomingTrips.length === 0) {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html("<div class='alert alert-warning col-4 text-center mx-auto'>You do not have any upcoming trips!<div>");
+			} else {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html(showTripsIndex(upcomingTrips));
+			}
 		}
 	})
 }
@@ -80,9 +92,15 @@ function getPastTrips(userId) {
 					pastTrips.push(new Trip(x))
 				}
 			})
-			$('div.row').html("");
-			$('div.js-render-content').html("");
-			$('div.js-render-content').html(showTripsIndex(pastTrips));
+			if (pastTrips.length === 0) {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html("<div class='alert alert-warning col-4 text-center mx-auto'>You do not have any past trips!<div>");				
+			} else {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html(showTripsIndex(pastTrips));
+			}
 		}
 	})
 }
