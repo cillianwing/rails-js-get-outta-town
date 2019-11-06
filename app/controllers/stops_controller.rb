@@ -49,7 +49,7 @@ class StopsController < ApplicationController
 
   def destroy
     @stop.destroy
-    redirect_to trip_stops_path(@user)
+    redirect_to trip_stops_path(@trip)
   end
 
   def all_stops
@@ -68,7 +68,7 @@ class StopsController < ApplicationController
   end
 
   def set_trip
-    @trip = Trip.find(params[:trip_id])
+    @trip = current_trip
   end
 
   def set_user
