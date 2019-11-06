@@ -1,0 +1,22 @@
+<div class="wrapper">
+	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
+
+	<div class="container-fluid">
+		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+
+		<div class="row justify-content-center">
+			<div class="col-4 mx-0 px-0 border border-primary rounded">
+				<div class="card">
+					<%= image_tag @trip.select_image, class: "card-img-top" %>
+				</div>
+		   	<div class="card-body">
+			   	<h5 class="card-title text-center"><%= @stop.location %>: <%= @stop.arr_date.strftime("%b %-d, %Y") %> - <%= @stop.dep_date.strftime("%b %-d, %Y") %></h5>
+			   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
+		   		<div class="row">
+				   	<p class="col card-text text-center">Restrictions: <%= @stop.restrictions %></p>
+			   	</div>	 		   	
+		   	</div>
+	   	</div>
+		</div>
+	</div>
+</div>

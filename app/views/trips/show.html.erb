@@ -1,0 +1,33 @@
+<div class="wrapper">
+	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
+
+	<div class="container-fluid">
+		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+
+		<div class="row justify-content-center">
+			<div class="col-4 mx-0 px-0 border border-primary rounded">
+				<div class="card">
+					<%= image_tag @trip.select_image, class: "card-img-top" %>
+				</div>
+		   	<div class="card-body">
+			   	<strong><p class="card-title text-center"><%= @trip.title %>: <%= @trip.start.strftime("%b %-d, %Y") %> - <%= @trip.end.strftime("%b %-d, %Y") %></p></strong>
+		   		<div class="row">
+				   	<p class="col card-text text-center"><%= @trip.description %></p>
+			   	</div>
+			   	<div class="row">
+			   		<p class="col card-text mx-auto text-center">Stops: <%= @trip.stops.length %></p>
+			   		<p class="col card-text mx-auto text-center">Flights: <%= @trip.flights.length %></p>
+			   	</div>
+			   	<div class="row">
+			   		<p class="col card-text text-center">Activities: <%= @trip.activities.length %></p>
+			   		<p class="col card-text text-center">Accommodations: <%= @trip.accommodations.length %></p>
+			   	</div>
+				   	<p class="col card-text text-center">Travellers: <%= @trip.travellers.join(", ") %></p>				   	
+		   	</div>
+	   	</div>
+		</div>
+	</div>
+</div>
+
+
+

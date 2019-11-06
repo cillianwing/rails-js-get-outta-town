@@ -8,12 +8,13 @@
 				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Add New Stop</button>'.html_safe, new_trip_stop_path(@trip), id: "new-stop", style: "text-decoration: none" %>
 			<% else %>
 				<% @stops.each_with_index do |stop, index| %>
-					<div class="col-sm-4 border border-primary rounded">
+					<div class="col-sm-4 px-0 border border-primary rounded">
 						<div class="card">
 							<%= image_tag @trip.select_image, class: "card-img-top" %>
 						</div>
 					   <div class="card-body">
-					   	<strong><p class="card-title text-center"><%= stop.location %>: <%= stop.start.strftime("%b %-d, %Y") %> - <%= stop.end.strftime("%b %-d, %Y") %></p></strong>
+					   	<h5 class="card-title text-center"><%= stop.location %>: <%= stop.arr_date.strftime("%b %-d, %Y") %> - <%= stop.dep_date.strftime("%b %-d, %Y") %></h5>
+					   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 					   		<div class="row">
 							   	<p class="col card-text text-center">Restrictions: <%= stop.restrictions %></p>
 						   	</div>	   	
