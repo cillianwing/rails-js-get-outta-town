@@ -55,6 +55,11 @@ function signUpModal() {
 							</div>
 
 		          <input type="submit" name="commit" value="Create User" class="form-group btn btn-success btn-block" data-disable-with="Update User">
+
+			        <p class="login-callout mt-3">
+			          Already have an account? <a id="login-link" href="/">Log In<a>
+			        </p>
+
 						</form>				
 					</div>
 				</div>

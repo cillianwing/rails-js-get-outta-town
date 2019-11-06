@@ -47,6 +47,11 @@
 					</div>
 
           <%= f.submit "Update User", class: "form-group btn btn-success btn-block" %>
+
+	        <p class="login-callout mt-3">
+	          Already have an account? <%= link_to "Log in.", login_path %>
+	        </p>
+	        
         <% end %>
       </div>
     </div>
