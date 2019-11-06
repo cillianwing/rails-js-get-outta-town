@@ -7,6 +7,7 @@ class StopsController < ApplicationController
 
   def index
     @stops = @trip.stops
+    flash[:warning] = "You do not have any stops added for this trip yet!" if @stops.length == 0
     respond_to do |f|
       f.html { render :index }
       f.json { render json: @stops }
@@ -21,7 +22,7 @@ class StopsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    @stop = Stop.new
   end
 
   def create
@@ -53,12 +54,12 @@ class StopsController < ApplicationController
 
   private
 
-  def trip_params
+  def stop_params
     params.require(:stop).permit(:location, :arr_date, :dep_date, :restrictions, :trip_id)
   end
 
   def set_trip
-    @trip = current_trip
+    @trip = Trip.find(params[:trip_id])
   end
 
   def set_user

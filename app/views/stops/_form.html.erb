@@ -1,0 +1,21 @@
+<div class="form-group px-2">
+  <%= f.label :location, "Trip Title:" %>
+  <%= f.text_field :location, class: "form-control", placeholder: "i.e. Florence, Italy" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :arr_date, "Arrival Date: " %>
+  <%= f.date_field :arr_date, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :dep_date, "Departure Date: " %>
+  <%= f.date_field :dep_date, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :restrictions, "Restrictions:" %>
+  <%= f.text_area :restrictions, class: "form-control", placeholder: "Please list any restrictions for travelling to this part of the world." %>
+</div>
+
+<%= f.hidden_field :trip_id, value: @trip.id %>

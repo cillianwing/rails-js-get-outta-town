@@ -1,3 +1,3 @@
 class Stop < ApplicationRecord
-	belongs_to :trips
+	belongs_to :trip
 end
