@@ -14,7 +14,14 @@
 			   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 		   		<div class="row">
 				   	<p class="col card-text text-center">Restrictions: <%= @stop.restrictions %></p>
-			   	</div>	 		   	
+			   	</div>
+					<div class="row my-2">
+						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Stop</button>'.html_safe, edit_trip_stop_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add New Stop</button>'.html_safe, new_trip_stop_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+			   	</div>
+			   	<div class="row my-2">
+						<%= link_to '<button class="btn btn-info btn-block" type="button">All Stops</button>'.html_safe, trip_stops_path, class: "col mx-auto", style: "text-decoration: none" %>
+					</div>			   	
 		   	</div>
 	   	</div>
 		</div>
