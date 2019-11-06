@@ -13,7 +13,8 @@
 							<%= image_tag @trip.select_image, class: "card-img-top" %>
 						</div>
 					   <div class="card-body">
-					   	<h5 class="card-title text-center"><%= stop.location %>: <%= stop.arr_date.strftime("%b %-d, %Y") %> - <%= stop.dep_date.strftime("%b %-d, %Y") %></h5>
+					   	<h3 class="card-title text-center"><%= stop.location %></h3>
+					   	<h5 class="card-title text-center"><%= stop.arr_date.strftime("%b %-d, %Y") %> - <%= stop.dep_date.strftime("%b %-d, %Y") %></h5></h5>
 					   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 					   		<div class="row">
 							   	<p class="col card-text text-center">Restrictions: <%= stop.restrictions %></p>
