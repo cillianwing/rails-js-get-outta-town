@@ -40,10 +40,10 @@
       <a href="#flightsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-plane"></i> Flights</a>
       <ul class="collapse list-unstyled" id="flightsSubmenu">
         <li>
-          <a id="">All My Flights</a>
+          <%= link_to "All My Flights", all_flights_path(@user) %>
         </li>
         <li>
-          <a id="">Specific Trip Flights</a>
+          <a href="#" id="user-trip-flights" name="<%= @user.id %>">Specific Trip Flights</a>
         </li>
         <li>
           <a id="">Add New Flight</a>

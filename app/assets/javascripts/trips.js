@@ -439,3 +439,54 @@ function showTripStopsIndex(arr) {
 	}
 	return indexString;
 }
+
+function getTripFlights(userId) {
+	$.ajax({
+		url: 'http://localhost:3000/users/' + userId + '/trips',
+		method: 'get',
+		dataType: 'json',
+		success: function(data) {
+			let allTrips = []
+			data.forEach(function(x) {
+				allTrips.push(new Trip(x))
+			})
+			if (allTrips.length === 0) {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html("<div class='alert alert-warning col-4 text-center mx-auto'>You have not added any trips yet!<div>");				
+			} else {
+				$('div.row').html("");
+				$('div.js-render-content').html("");
+				$('div.js-render-content').html(showTripFlightsIndex(allTrips));
+			}
+		}
+	})
+}
+
+Trip.prototype.tripFlightsCard = function() {
+	return (`
+			<div class="col-sm-4 px-0 border border-primary rounded">
+				<div class="card">
+					<img src="/assets/${this.imageSelect()}" class="card-img-top">
+				</div>
+				<div class="card-body">
+					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
+					<p class="card-text text-center">${this.description}</p>
+					<a href="trips/${this.id}/flights">
+						<input id="trip-stop" type="button" class="btn btn-info col" value="Select Trip">
+					</a>					
+				</div>
+			</div>
+		`)
+}
+
+function showTripFlightsIndex(arr) {
+	let indexString = `<div class="row justify-content-center mb-2">`;
+	for (let i = 0; i < arr.length; i++) {
+		indexString += arr[i].tripFlightsCard();
+		if ((i + 1) % 3 === 0) {
+			indexString += (`</div><div class="row justify-content-center mb-2">`)
+		}
+	}
+	return indexString;
+}

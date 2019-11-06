@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   post '/group_trip', to: 'trips#join_group'
 
   get '/users/:id/all_stops', to: 'stops#all_stops', as: 'all_stops'
-  get '/users/:id/all_flights', to: 'stops#all_flights', as: 'all_flights'
+  get '/users/:id/all_flights', to: 'flights#all_flights', as: 'all_flights'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

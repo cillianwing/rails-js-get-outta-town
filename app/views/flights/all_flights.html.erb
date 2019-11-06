@@ -5,17 +5,16 @@
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
 		<div class="row justify-content-center">
 			<% if @flights.length == 0 %>
-				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Add New Flight</button>'.html_safe, new_trip_flight_path(@trip), id: "new-flight", style: "text-decoration: none" %>
+				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">See Current Trips and Add a New Flight</button>'.html_safe, user_trips_path(@user), id: "new-flight", style: "text-decoration: none" %>
 			<% else %>
 				<% @flights.each_with_index do |flight, index| %>
 					<div class="col-sm-4 px-0 border border-primary rounded">
 						<div class="card">
-							<%= image_tag @trip.select_image, class: "card-img-top" %>
+							<%= image_tag "trips.jpg", class: "card-img-top" %>
 						</div>
 					   <div class="card-body">
-			   			<h5 class="card-title text-center"><%= @light.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></h5>
+			   			<h5 class="card-title text-center"><%= flight.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></h5>
 					   	<h5 class="card-title text-center"><%= flight.dep_loc %> - <%= flight.arr_loc %></h5>
-					   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 				   		<div class="row">
 						   	<p class="col card-text text-center">Airline: <%= flight.airline %></p>
 						   	<p class="col card-text text-center">Flight #: <%= flight.flight_num %></p>
@@ -26,7 +25,7 @@
 						   	<p class="col card-text text-center">Cost: $<%= flight.cost %></p>
 					   	</div>		
 							<div class="row my-2">
-								<%= link_to '<button class="btn btn-info btn-block" type="button">View Flight</button>'.html_safe, trip_flight_path(@trip, flight), class: "col mx-auto", style: "text-decoration: none" %>
+								<%= link_to '<button class="btn btn-info btn-block" type="button">View Flight</button>'.html_safe, trip_flight_path(flight), class: "col mx-auto", style: "text-decoration: none" %>
 					   	</div>
 					   </div>
 					</div>

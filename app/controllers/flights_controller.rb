@@ -52,7 +52,7 @@ class FlightsController < ApplicationController
     redirect_to trip_flights_path(@trip)
   end
 
-  def all_stops
+  def all_flights
     @flights = @user.trips.collect do |trip| 
       trip.flights.each do |flight|
         flight 

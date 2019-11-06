@@ -13,7 +13,7 @@
 							<%= image_tag @trip.select_image, class: "card-img-top" %>
 						</div>
 					   <div class="card-body">
-			   			<h5 class="card-title text-center"><%= @light.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></h5>
+			   			<h5 class="card-title text-center"><%= flight.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></h5>
 					   	<h5 class="card-title text-center"><%= flight.dep_loc %> - <%= flight.arr_loc %></h5>
 					   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 				   		<div class="row">
