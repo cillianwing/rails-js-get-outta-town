@@ -14,12 +14,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    return redirect_to root_path, alert: "Please log in." unless logged_in?
+    if !logged_in?
+      redirect_to root_path, flash: { danger: "Please log in." }
+    end
   end
 
   def check_user
     if current_user.id != params[:user_id].to_i
-      redirect_to users_path, alert: "You cannot view another user's profile."
+      redirect_to users_path, flash: { warning: "You cannot view another user's profile." }
     else
       true
     end

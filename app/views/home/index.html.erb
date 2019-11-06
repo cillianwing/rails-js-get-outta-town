@@ -5,7 +5,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/"><strong>Get Outta Town!</strong><span class="sr-only">(current)</span></a>
       </li>
-    </ul>
+    </ul> 
 
 		<%= form_for(@user, url: login_path, method: :post, :html => {class: "form-inline my-2 my-lg-0"}) do |f| %>
 	    <%= f.email_field :email, class: "form-control mr-sm-2", placeholder: "Email" %>
@@ -15,6 +15,15 @@
     <input id="sign-up" class="btn btn-success m-1 my-sm-0" type="button" value="Sign Up">
   </div>
 </nav>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> alert-dismissible fade show col-4 justify-content-center mx-auto mt-1">
+    <%= value %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
 
 <div id="signup-modal-display" data-taget="#signupModal"></div>
 <div id="carouselExampleIndicators" class="carousel slide mt-3 w-75 mx-auto" data-ride="carousel">
