@@ -1,2 +1,72 @@
 class StopsController < ApplicationController
+	before_action :set_stop, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip
+  before_action :set_user
+  before_action :require_login
+  skip_before_action :verify_authenticity_token
+
+  def index
+    @stops = @trip.stops
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @stops }
+    end
+  end
+
+  def show
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @stop }
+    end
+  end
+
+  def new
+    @trip = Trip.new
+  end
+
+  def create
+    if @stop = @trip.stops.create(stop_params)
+      respond_to do |f|
+        f.html { redirect_to trip_stop_path(@trip, @stop) }
+        f.json {render json: @stop }
+      end
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @stop.update(stop_params)
+      redirect_to trip_stop_path(@trip, @stop)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @stop.destroy
+    redirect_to trip_stops_path(@user)
+  end
+
+  private
+
+  def trip_params
+    params.require(:stop).permit(:location, :arr_date, :dep_date, :restrictions, :trip_id)
+  end
+
+  def set_trip
+    @trip = current_trip
+  end
+
+  def set_user
+    @user = current_user
+  end
+
+  def set_stop
+  	@stop = Stop.find(params[:id])
+  end
+
 end

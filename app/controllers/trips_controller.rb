@@ -2,6 +2,7 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:index, :show, :new, :create, :edit, :group_trip, :join_group]
   before_action :require_login
+  before_action :check_user
   skip_before_action :verify_authenticity_token
 
   def index
@@ -38,7 +39,7 @@ class TripsController < ApplicationController
     if @user.id == @trip.creator_id
       render :edit
     else
-      redirect_to user_trips_path(@user, @trip), alert: "You can only edit a trip that you created."
+      redirect_to user_trips_path(@user, @trip), flash: { warning: "You can only edit a trip that you created." }
     end
   end
 
