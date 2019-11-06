@@ -124,10 +124,10 @@ function listenForNewTripCreation(userId) {
 			data: values,
 			dataType: "json",
 			success(data) {
-				let post = data
+				let newTrip = new Trip(data)
 				$('div.row').html("");
 				$('div.js-render-content').html("");
-				$('div.js-render-content').html(newTripShow(data));
+				$('div.js-render-content').html(newTrip.newTripShow());
 				$('#tripModal').modal('hide');
 			}
 		})
@@ -156,7 +156,7 @@ class Trip {
 
 Trip.prototype.tripCard = function() {
 	return (`
-			<div class="col-sm-4 mb-4 mx-0 px-0 border border-primary rounded">
+			<div class="col-sm-4 px-0 border border-primary rounded">
 				<div class="card">
 					<img src="/assets/${this.imageSelect()}" class="card-img-top">
 				</div>
@@ -169,7 +169,7 @@ Trip.prototype.tripCard = function() {
 }
 
 function showTripsIndex(arr) {
-	let indexString = `<div class="row justify-content-center">`;
+	let indexString = `<div class="row justify-content-center mb-2">`;
 	for (let i = 0; i < arr.length; i++) {
 		indexString += arr[i].tripCard();
 		if ((i + 1) % 3 === 0) {
@@ -235,7 +235,7 @@ function newTripModal(userId) {
 		`)
 }
 
-function newTripShow(trip) {
+Trip.prototype.newTripShow = function() {
 	return (`
 			<div class="row justify-content-center">
 				<div class="col-4 mx-0 px-0 border border-primary rounded">
@@ -243,8 +243,8 @@ function newTripShow(trip) {
 						<img src="/assets/${this.imageSelect()}" class="card-img-top">
 					</div>
 				   <div class="card-body">
-				   	<strong><p class="card-title text-center">${trip.title}: ${trip.start} - ${trip.end}</p></strong>
-				   	<p class="card-text text-center">${trip.description}</p>
+				   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
+				   	<p class="card-text text-center">${this.description}</p>
 				   </div>
 			   </div>
 			</div>
