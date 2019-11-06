@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :require_login, only: [:index, :show, :edit, :update, :destroy]
-	before_action :set_user, only: [:index, :edit, :update, :destroy]
+	before_action :set_user, only: [:index, :show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -22,7 +22,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    check_user
+    if current_user.id != params[:id].to_i
+      redirect_to users_path, flash: { warning: "You cannot view another user's profile." }
+    end
   end
 
   def edit

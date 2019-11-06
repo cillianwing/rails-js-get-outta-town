@@ -23,8 +23,8 @@
 						<textarea rows="3" class="form-control" disabled><%= @user.bio %></textarea>
 					</div>										
 
-	      <%= link_to '<button class="btn btn-info btn-block my-1" type="button">Edit User</button>'.html_safe, edit_user_path, id: "edit-user", style: "text-decoration: none" %>
-	      <%= link_to '<button class="btn btn-danger btn-block mt-1 mb-3" type="button">Delete User</button>'.html_safe, user_path, method: :delete, data: { confirm: "Are you sure you want to delete this user?" }, style: "text-decoration: none" %>
+	      <%= link_to '<button class="btn btn-info btn-block my-1" type="button">Edit Profile</button>'.html_safe, edit_user_path, id: "edit-user", style: "text-decoration: none" %>
+	      <%= link_to '<button class="btn btn-danger btn-block mt-1 mb-3" type="button">Delete Profile</button>'.html_safe, user_path, method: :delete, data: { confirm: "Are you sure you want to delete this user?" }, style: "text-decoration: none" %>
 			</div>
 
 			<div class="col-sm-4 mx-2 mt-3 border border-info rounded">
