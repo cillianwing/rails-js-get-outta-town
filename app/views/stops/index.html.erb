@@ -18,7 +18,10 @@
 					   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 					   		<div class="row">
 							   	<p class="col card-text text-center">Restrictions: <%= stop.restrictions %></p>
-						   	</div>	   	
+						   	</div>
+							<div class="row my-2">
+								<%= link_to '<button class="btn btn-info btn-block" type="button">View Stop</button>'.html_safe, trip_stop_path(@trip, stop), class: "col mx-auto", style: "text-decoration: none" %>
+					   	</div>						   	
 					   </div>
 					</div>
 					<% if index + 1 % 3 == 0 %>
