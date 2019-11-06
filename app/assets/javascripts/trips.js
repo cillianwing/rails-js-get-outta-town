@@ -138,11 +138,11 @@ class Trip {
 
 Trip.prototype.tripCard = function() {
 	return (`
-			<div class="col-sm-4 mb-4">
-				<div class="card" style="border: 1px solid black">
+			<div class="col-sm-4 mb-4 mx-0 px-0 border border-primary rounded">
+				<div class="card">
 					<img src="/assets/${this.imageSelect()}" class="card-img-top">
 				</div>
-				<div class="card-body" style="border: 1px solid grey">
+				<div class="card-body">
 					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
 					<p class="card-text text-center">${this.description}</p>
 				</div>
@@ -220,11 +220,11 @@ function newTripModal(userId) {
 function newTripShow(trip) {
 	return (`
 			<div class="row justify-content-center">
-				<div class="col-4">
-					<div class="card" style="border: 1px solid black">
+				<div class="col-4 mx-0 px-0 border border-primary rounded">
+					<div class="card">
 						<img src="/assets/${this.imageSelect()}" class="card-img-top">
 					</div>
-				   <div class="card-body" style="border: 1px solid grey">
+				   <div class="card-body">
 				   	<strong><p class="card-title text-center">${trip.title}: ${trip.start} - ${trip.end}</p></strong>
 				   	<p class="card-text text-center">${trip.description}</p>
 				   </div>
@@ -266,7 +266,8 @@ function listenForTripConfirm(userId, newTrip) {
 		posting.done(function(data) {
 			let updatedGroupTrip = new Trip(data)
 			$('#groupTripModal').modal('hide');
-			$('div.col-sm-4').html(updatedGroupTrip.groupTripShow());
+			$('div.row').html('');
+			$('div.row').html(updatedGroupTrip.groupTripShow());
 		})
 	})
 }
@@ -308,12 +309,14 @@ Trip.prototype.tripConfirmShow = function() {
 
 Trip.prototype.groupTripShow = function() {
 	return (`
-		<div class="card" style="border: 1px solid black">
-			<img src="/assets/${this.imageSelect()}" class="card-img-top">
-		</div>
-	   <div class="card-body" style="border: 1px solid grey">
-	   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
-	   	<p class="card-text text-center">${this.description}</p>
+		<div id="group-trip-show" class="col-4 mx-0 px-0 border border-primary rounded">
+			<div class="card">
+				<img src="/assets/${this.imageSelect()}" class="card-img-top">
+			</div>
+		   <div class="card-body">
+		   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
+		   	<p class="card-text text-center">${this.description}</p>
+		   </div>
 	   </div>
 	`)
 }

@@ -8,11 +8,11 @@
 				<h5>No group trips with spots available.</h5></div>
 			<% else %>
 				<% @trips.each_with_index do |trip, index| %>
-					<div class="col-sm-4">
-						<div class="card" style="border: 1px solid black">
+					<div id="available-group-trips" class="col-sm-4 mx-0 px-0 border border-primary rounded">
+						<div class="card">
 							<%= image_tag trip.select_image, class: "card-img-top" %>
 						</div>
-					   <div class="card-body" style="border: 1px solid grey">
+					   <div class="card-body">
 					   	<strong><p class="card-title text-center"><%= trip.title %>: <%= trip.start.strftime("%b %-d, %Y") %> - <%= trip.end.strftime("%b %-d, %Y") %></p></strong>
 					   	<p class="card-text text-center"><%= trip.description %></p>
 					   	<p class="card-text text-center">Trip Creator: <%= User.find(trip.creator_id).name %></p>
@@ -26,7 +26,6 @@
 					<% end %>
 				<% end %>
 			<% end %>
-			<div id="groupTripShow"></div>
 		</div>
 		<div id="group-trip-modal-display" data-taget="#groupTripModal"></div>
 	</div>
