@@ -4,27 +4,31 @@
 	<div class="container-fluid mx-2">
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
 		<div class="row justify-content-center">
-			<% @stops.each_with_index do |stop, index| %>
-				<div class="col-sm-4 px-0 mb-2 border border-primary rounded">
-					<div class="card">
-						<%= image_tag Trip.find(stop.trip_id).select_image, class: "card-img-top" %>
+			<% if @stops.length == 0 %>
+				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Select Existing Trip to Add a New Stop</button>'.html_safe, user_trips_path(@user), id: "new-stop", style: "text-decoration: none" %>
+			<% else %>			
+				<% @stops.each_with_index do |stop, index| %>
+					<div class="col-sm-4 px-0 mb-2 border border-primary rounded">
+						<div class="card">
+							<%= image_tag Trip.find(stop.trip_id).select_image, class: "card-img-top" %>
+						</div>
+					   <div class="card-body">
+					   	<h3 class="card-title text-center"><%= stop.location %></h3>
+					   	<h5 class="card-title text-center"><%= stop.arr_date.strftime("%b %-d, %Y") %> - <%= stop.dep_date.strftime("%b %-d, %Y") %></h5></h5>
+					   	<strong><p class="card-title text-center">Trip: <%= Trip.find(stop.trip_id).title %></p></strong>
+					   		<div class="row">
+							   	<p class="col card-text text-center">Restrictions: <%= stop.restrictions %></p>
+						   	</div>
+								<div class="row my-2">
+									<%= link_to '<button class="btn btn-info btn-block" type="button">View Stop</button>'.html_safe, trip_stop_path(Trip.find(stop.trip_id), stop), class: "col mx-auto", style: "text-decoration: none" %>
+						   	</div>						   	
+					   </div>
 					</div>
-				   <div class="card-body">
-				   	<h3 class="card-title text-center"><%= stop.location %></h3>
-				   	<h5 class="card-title text-center"><%= stop.arr_date.strftime("%b %-d, %Y") %> - <%= stop.dep_date.strftime("%b %-d, %Y") %></h5></h5>
-				   	<strong><p class="card-title text-center">Trip: <%= Trip.find(stop.trip_id).title %></p></strong>
-				   		<div class="row">
-						   	<p class="col card-text text-center">Restrictions: <%= stop.restrictions %></p>
-					   	</div>
-							<div class="row my-2">
-								<%= link_to '<button class="btn btn-info btn-block" type="button">View Stop</button>'.html_safe, trip_stop_path(Trip.find(stop.trip_id), stop), class: "col mx-auto", style: "text-decoration: none" %>
-					   	</div>						   	
-				   </div>
-				</div>
-				<% if index + 1 % 3 == 0 %>
-					</div><div class="row justify-content-center">
-				<% elsif index == @stops.length %>
-					</div>
+					<% if index + 1 % 3 == 0 %>
+						</div><div class="row justify-content-center">
+					<% elsif index == @stops.length %>
+						</div>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>

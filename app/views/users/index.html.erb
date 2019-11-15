@@ -30,59 +30,65 @@
 				<div class="tab-content" id="pills-tabContent">
 				  <div class="tab-pane fade show active" id="pills-trips" role="tabpanel" aria-labelledby="pills-trips-tab">
 				  	<div class="row">
-					  	<div class="col-7 border border-primary rounded mx-auto">
-					  		<h3 class="text-primary">Next Trip</h3>
-					  		<div class="row">
-					  			<div class="col-6 border border-primary rounded mx-auto">
-										<div class="card mx-auto mt-4">
-											<%= image_tag @trips.first.select_image, class: "card-img-top" %>
-										</div>
-								   	<div class="card-body">
-									   	<strong><p class="card-title text-center"><%= @trips.first.title %></p></strong>
-								   		<div class="row">
-										   	<p class="col card-text text-center"><%= @trips.first.start.strftime("%b %-d, %Y") %> - <%= @trips.first.end.strftime("%b %-d, %Y") %></p>
-									   	</div>
-									   	<div class="row">
-									   		<p class="col card-text text-center"><%= @trips.first.description %></p>
-									   	</div>	   	
-								   	</div>										
-					  			</div>
-					  			<div class="col-5 border border-primary rounded mx-auto my-auto">
-					  				<strong>Stops:</strong>
-				  					<ul>
-				  						<% if @trips.first.stops.empty? %>
-				  							<li>No stops yet for this trip</li>
-			  							<% else %>
-					  						<%= @trips.first.stops.each do |stop| %>
-					  							<li><%= stop %></li>
-					  						<% end %>
-				  						<% end %>
-				  					</ul>
-					  				<strong>Other Travellers:</strong>
-										<% if @trips.first.group_trip %>
-					  					<ul>
-					  						<% if @trips.first.users.length == 1 %>
-					  							<li>No other travellers on this trip</li>
-				  							<% else %>
-						  						<%= @trips.first.users.each do |user| %>
-						  							<li><%= user.name unless user.id == @user.id %></li>
+				  		<% if @trips.empty? %>
+					  		<div class="col-12">
+				  				<h3 class="text-primary text-center">You have not created or joined any trips!</h3>
+				  			</div>
+			  				<%= link_to '<button class="btn btn-success my-1" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
+			  				<%= link_to '<button class="btn btn-success my-1" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-auto ml-1" %>
+			  			<% else %>
+				  			<div class="row">
+							  	<div class="col-7 border border-primary rounded ml-auto mr-3">
+							  		<h3 class="my-2 text-primary">Next Trip</h3>
+							  		<div class="row">
+							  			<div class="col-6 mx-auto">
+												<div class="card mx-auto my-auto">
+													<%= image_tag @trips.first.select_image, class: "card-img-top" %>
+												</div>
+										   	<div class="card-body">
+											   	<strong><p class="card-title text-center"><%= @trips.first.title %></p></strong>
+												   	<p class="col card-text text-center"><%= @trips.first.start.strftime("%b %-d, %Y") %> - <%= @trips.first.end.strftime("%b %-d, %Y") %></p>
+										   	</div>										
+							  			</div>
+							  			<div class="col-6 mx-auto my-auto">
+							  				<strong><p>Trip Description: </strong><%= @trips.first.description %></p>
+							  				<strong>Stops: </strong><%= link_to @trips.first.stops.length, all_stops_path(@user) %>
+						  					<ul>
+						  						<% if @trips.first.stops.empty? %>
+						  							<li>No stops yet for this trip</li>
+					  							<% else %>
+							  						<%= @trips.first.stops.each do |stop| %>
+							  							<li><%= stop %></li>
+							  						<% end %>
 						  						<% end %>
-					  						<% end %>
-					  					</ul>		
-				  					<% else %>
-				  						<ul>
-				  							<li>No other travellers on this trip</li>
-				  						</ul>
-				  					<% end %>
-				  					<p>Flights booked: <%= @trips.first.flights.length %></p>
-				  					<p>Activities booked: <%= @trips.first.activities.length %></p>
-				  					<p>Accommodations booked: <%= @trips.first.accommodations.length %></p>
-					  			</div>
-					  		</div>
-					  	</div>
-					  	<div class="col-4 border border-primary rounded mx-auto">
-					  		<h3 class="text-primary">Right Column</h3>
-					  	</div>
+						  					</ul>
+							  				<strong>Other Travellers:</strong>
+												<% if @trips.first.group_trip %>
+							  					<ul>
+							  						<% if @trips.first.users.length == 1 %>
+							  							<li>No other travellers on this trip</li>
+						  							<% else %>
+								  						<%= @trips.first.users.each do |user| %>
+								  							<li><%= user.name unless user.id == @user.id %></li>
+								  						<% end %>
+							  						<% end %>
+							  					</ul>		
+						  					<% else %>
+						  						<ul>
+						  							<li>No other travellers on this trip</li>
+						  						</ul>
+						  					<% end %>
+						  					<p>Flights booked: <%= link_to @trips.first.flights.length, all_flights_path(@user) %></p>
+						  					<p>Activities booked: <%= @trips.first.activities.length %></p>
+						  					<p>Accommodations booked: <%= @trips.first.accommodations.length %></p>
+							  			</div>
+							  		</div>
+							  	</div>
+							  	<div class="col-4 border border-primary rounded mr-auto ml-3">
+							  		<h3 class="text-primary">Upcoming Trips</h3>
+							  	</div>
+				  			</div>
+			  			<% end %>
 					  </div>
 				  </div>
 				  <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
