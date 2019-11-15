@@ -38,7 +38,7 @@
 			  				<%= link_to '<button class="btn btn-success my-1" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-auto ml-1" %>
 			  			<% else %>
 				  			<div class="row">
-							  	<div class="col-7 border border-primary rounded ml-auto mr-3">
+							  	<div class="col-7 border-right border-primary ml-auto">
 							  		<h3 class="my-2 text-primary">Next Trip</h3>
 							  		<div class="row">
 							  			<div class="col-6 mx-auto">
@@ -52,7 +52,7 @@
 							  			</div>
 							  			<div class="col-6 mx-auto my-auto">
 							  				<strong><p>Trip Description: </strong><%= @trips.first.description %></p>
-							  				<strong>Stops: </strong><%= link_to @trips.first.stops.length, all_stops_path(@user) %>
+							  				<strong>Stops: </strong><%= link_to @trips.first.stops.length, trip_stops_path(@trips.first) %>
 						  					<ul>
 						  						<% if @trips.first.stops.empty? %>
 						  							<li>No stops yet for this trip</li>
@@ -78,13 +78,13 @@
 						  							<li>No other travellers on this trip</li>
 						  						</ul>
 						  					<% end %>
-						  					<p>Flights booked: <%= link_to @trips.first.flights.length, all_flights_path(@user) %></p>
-						  					<p>Activities booked: <%= @trips.first.activities.length %></p>
-						  					<p>Accommodations booked: <%= @trips.first.accommodations.length %></p>
+						  					<p>Flights booked: <%= link_to @trips.first.flights.length, trip_flights_path(@trips.first) %></p>
+						  					<p>Activities booked: <%= link_to @trips.first.activities.length, trip_activities_path(@trips.first) %></p>
+						  					<p>Accommodations booked: <%= link_to @trips.first.accommodations.length, trip_accommodations_path(@trips.first) %></p>
 							  			</div>
 							  		</div>
 							  	</div>
-							  	<div class="col-4 border border-primary rounded mr-auto ml-3">
+							  	<div class="col-4 border-left border-primary mr-auto">
 							  		<h3 class="text-primary">Upcoming Trips</h3>
 							  	</div>
 				  			</div>
