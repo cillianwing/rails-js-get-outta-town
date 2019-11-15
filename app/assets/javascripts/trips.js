@@ -156,24 +156,37 @@ class Trip {
 
 Trip.prototype.tripCard = function() {
 	return (`
-			<div class="col-sm-4 px-0 border border-primary rounded">
-				<div class="card">
-					<img src="/assets/${this.imageSelect()}" class="card-img-top">
+			<div class="col-4 mx-0 px-0 border border-primary rounded">
+				<div class="card" style="height:275px">
+					<img src="/assets/${this.imageSelect()}" class="card-img-top" style="height: 100%">
 				</div>
 				<div class="card-body">
-					<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
-					<p class="card-text text-center">${this.description}</p>
+					<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
+					<div class="row">
+						<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+					</div>
+					<div class="row">
+						<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
+						<p class="col card-text mx-auto text-center" style="height: 25px">Flights: ${this.flights.length}</p>
+					</div>		
+					<div class="row">
+						<p class="col card-text mx-auto text-center" style="height: 25px">Activities: ${this.activities.length}</p>
+						<p class="col card-text mx-auto text-center" style="height: 25px">Accommodations: ${this.accommodations.length}</p>
+					</div>
+			   	<div style="height: 50px; overflow-y: auto">				   	
+				   	<p class="col card-text text-center">Travellers: ${travellers(this)}</p>				   	
+			   	</div>					
 				</div>
 			</div>
 		`)
 }
 
 function showTripsIndex(arr) {
-	let indexString = `<div class="row justify-content-center mb-2">`;
+	let indexString = `<div class="row justify-content-center mb-2" style="height: 525px">`;
 	for (let i = 0; i < arr.length; i++) {
 		indexString += arr[i].tripCard();
 		if ((i + 1) % 3 === 0) {
-			indexString += (`</div><div class="row justify-content-center mb-2">`)
+			indexString += (`</div><div class="row justify-content-center mb-2" style="height: 525px">`)
 		}
 	}
 	return indexString;
@@ -237,16 +250,29 @@ function newTripModal(userId) {
 
 Trip.prototype.newTripShow = function() {
 	return (`
-			<div class="row justify-content-center">
+			<div class="row justify-content-center" style="height: 525px">
 				<div class="col-4 mx-0 px-0 border border-primary rounded">
-					<div class="card">
-						<img src="/assets/${this.imageSelect()}" class="card-img-top">
+					<div class="card" style="height:275px">
+						<img src="/assets/${this.imageSelect()}" class="card-img-top" style="height: 100%">
 					</div>
-				   <div class="card-body">
-				   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
-				   	<p class="card-text text-center">${this.description}</p>
-				   </div>
-			   </div>
+					<div class="card-body">
+						<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
+						<div class="row">
+							<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+						</div>
+						<div class="row">
+							<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
+							<p class="col card-text mx-auto text-center" style="height: 25px">Flights: ${this.flights.length}</p>
+						</div>		
+						<div class="row">
+							<p class="col card-text mx-auto text-center" style="height: 25px">Activities: ${this.activities.length}</p>
+							<p class="col card-text mx-auto text-center" style="height: 25px">Accommodations: ${this.accommodations.length}</p>
+						</div>
+				   	<div style="height: 50px; overflow-y: auto">				   	
+					   	<p class="col card-text text-center">Travellers: ${travellers(this)}</p>				   	
+				   	</div>					
+					</div>
+				</div>
 			</div>
 	`)
 }
@@ -328,13 +354,26 @@ Trip.prototype.tripConfirmShow = function() {
 Trip.prototype.groupTripShow = function() {
 	return (`
 		<div id="group-trip-show" class="col-4 mx-0 px-0 border border-primary rounded">
-			<div class="card">
-				<img src="/assets/${this.imageSelect()}" class="card-img-top">
+			<div class="card" style="height:275px">
+				<img src="/assets/${this.imageSelect()}" class="card-img-top" style="height: 100%">
 			</div>
-		   <div class="card-body">
-		   	<strong><p class="card-title text-center">${this.title}: ${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p></strong>
-		   	<p class="card-text text-center">${this.description}</p>
-		   </div>
+			<div class="card-body">
+				<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
+				<div class="row">
+					<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+				</div>
+				<div class="row">
+					<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
+					<p class="col card-text mx-auto text-center" style="height: 25px">Flights: ${this.flights.length}</p>
+				</div>		
+				<div class="row">
+					<p class="col card-text mx-auto text-center" style="height: 25px">Activities: ${this.activities.length}</p>
+					<p class="col card-text mx-auto text-center" style="height: 25px">Accommodations: ${this.accommodations.length}</p>
+				</div>
+		   	<div style="height: 50px; overflow-y: auto">				   	
+			   	<p class="col card-text text-center">Travellers: ${travellers(this)}</p>				   	
+		   	</div>					
+			</div>
 	   </div>
 	`)
 }
@@ -387,6 +426,14 @@ Trip.prototype.imageSelect = function() {
 	} else if (month === "12") {
 		return "december.jpg"
 	}
+}
+
+function travellers(trip) {
+	let travellersArray = []
+	trip.users.forEach(function(hash) {
+		travellersArray.push(hash.name)
+	})
+	return travellersArray.join(", ")
 }
 
 function getTripStops(userId) {
