@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @trip = Trip.new
+    @trips = @user.trips.sort_by { |trip| trip[:start] }
   end
 
   def new

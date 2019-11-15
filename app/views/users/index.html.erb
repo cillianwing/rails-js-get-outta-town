@@ -9,7 +9,7 @@
 		<div id="trip-modal-display" data-taget="#tripModal" name="<%= @user.id %>"></div>
 		<div class="js-render-content"></div>
 		<div class="row justify-content-center">
-			<div class="col-6 py-2" style="border: 1px solid grey; border-radius: 20px">
+			<div class="col-12 py-2 border border-primary" style="border-radius: 20px">
 				<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
 				  <li class="nav-item">
 				    <a class="nav-link active" id="pills-trips-tab" data-toggle="pill" href="#pills-trips" role="tab" aria-controls="pills-trips" aria-selected="true">Trips</a>
@@ -29,7 +29,61 @@
 				</ul>
 				<div class="tab-content" id="pills-tabContent">
 				  <div class="tab-pane fade show active" id="pills-trips" role="tabpanel" aria-labelledby="pills-trips-tab">
-				  	Bunch of info for trips.
+				  	<div class="row">
+					  	<div class="col-7 border border-primary rounded mx-auto">
+					  		<h3 class="text-primary">Next Trip</h3>
+					  		<div class="row">
+					  			<div class="col-6 border border-primary rounded mx-auto">
+										<div class="card mx-auto mt-4">
+											<%= image_tag @trips.first.select_image, class: "card-img-top" %>
+										</div>
+								   	<div class="card-body">
+									   	<strong><p class="card-title text-center"><%= @trips.first.title %></p></strong>
+								   		<div class="row">
+										   	<p class="col card-text text-center"><%= @trips.first.start.strftime("%b %-d, %Y") %> - <%= @trips.first.end.strftime("%b %-d, %Y") %></p>
+									   	</div>
+									   	<div class="row">
+									   		<p class="col card-text text-center"><%= @trips.first.description %></p>
+									   	</div>	   	
+								   	</div>										
+					  			</div>
+					  			<div class="col-5 border border-primary rounded mx-auto my-auto">
+					  				<strong>Stops:</strong>
+				  					<ul>
+				  						<% if @trips.first.stops.empty? %>
+				  							<li>No stops yet for this trip</li>
+			  							<% else %>
+					  						<%= @trips.first.stops.each do |stop| %>
+					  							<li><%= stop %></li>
+					  						<% end %>
+				  						<% end %>
+				  					</ul>
+					  				<strong>Other Travellers:</strong>
+										<% if @trips.first.group_trip %>
+					  					<ul>
+					  						<% if @trips.first.users.length == 1 %>
+					  							<li>No other travellers on this trip</li>
+				  							<% else %>
+						  						<%= @trips.first.users.each do |user| %>
+						  							<li><%= user.name unless user.id == @user.id %></li>
+						  						<% end %>
+					  						<% end %>
+					  					</ul>		
+				  					<% else %>
+				  						<ul>
+				  							<li>No other travellers on this trip</li>
+				  						</ul>
+				  					<% end %>
+				  					<p>Flights booked: <%= @trips.first.flights.length %></p>
+				  					<p>Activities booked: <%= @trips.first.activities.length %></p>
+				  					<p>Accommodations booked: <%= @trips.first.accommodations.length %></p>
+					  			</div>
+					  		</div>
+					  	</div>
+					  	<div class="col-4 border border-primary rounded mx-auto">
+					  		<h3 class="text-primary">Right Column</h3>
+					  	</div>
+					  </div>
 				  </div>
 				  <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
 				  	Bunch of info for stops.
