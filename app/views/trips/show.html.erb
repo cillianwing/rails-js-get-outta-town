@@ -4,25 +4,27 @@
 	<div class="container-fluid mx-2">
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
 
-		<div class="row justify-content-center">
+		<div class="row justify-content-center" style="height: 525px">
 			<div class="col-4 mx-0 px-0 border border-primary rounded">
-				<div class="card">
-					<%= image_tag @trip.select_image, class: "card-img-top" %>
+				<div class="card" style="height: 275px">
+					<%= image_tag @trip.select_image, class: "card-img-top", style: "height: 100%" %>
 				</div>
 		   	<div class="card-body">
-			   	<strong><p class="card-title text-center"><%= @trip.title %>: <%= @trip.start.strftime("%b %-d, %Y") %> - <%= @trip.end.strftime("%b %-d, %Y") %></p></strong>
+			   	<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px"><%= @trip.title %>:<br><%= @trip.start.strftime("%b %-d, %Y") %> - <%= @trip.end.strftime("%b %-d, %Y") %></p>
 		   		<div class="row">
-				   	<p class="col card-text text-center"><%= @trip.description %></p>
+			   		<p class="col card-text text-center" style="height: 50px; overflow-y: auto"><%= @trip.description %></p>
 			   	</div>
 			   	<div class="row">
-			   		<p class="col card-text mx-auto text-center">Stops: <%= @trip.stops.length %></p>
-			   		<p class="col card-text mx-auto text-center">Flights: <%= @trip.flights.length %></p>
+			   		<p class="col card-text mx-auto text-center" style="height: 25px">Stops: <%= @trip.stops.length %></p>
+			   		<p class="col card-text mx-auto text-center" style="height: 25px">Flights: <%= @trip.flights.length %></p>
 			   	</div>
 			   	<div class="row">
-			   		<p class="col card-text text-center">Activities: <%= @trip.activities.length %></p>
-			   		<p class="col card-text text-center">Accommodations: <%= @trip.accommodations.length %></p>
+			   		<p class="col card-text text-center" style="height: 25px">Activities: <%= @trip.activities.length %></p>
+			   		<p class="col card-text text-center" style="height: 25px">Accommodations: <%= @trip.accommodations.length %></p>
 			   	</div>
+			   	<div style="height: 50px; overflow-y: auto">				   	
 				   	<p class="col card-text text-center">Travellers: <%= @trip.travellers.join(", ") %></p>				   	
+			   	</div>
 		   	</div>
 	   	</div>
 		</div>
