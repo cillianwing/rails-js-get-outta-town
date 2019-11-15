@@ -10,67 +10,52 @@
 		<div class="js-render-content"></div>
 		<div class="row justify-content-center">
 			<div class="col-12 py-2 border border-primary" style="border-radius: 20px">
-				<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-				  <li class="nav-item">
-				    <a class="nav-link active" id="pills-trips-tab" data-toggle="pill" href="#pills-trips" role="tab" aria-controls="pills-trips" aria-selected="true">Trips</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" id="pills-stops-tab" data-toggle="pill" href="#pills-stops" role="tab" aria-controls="pills-stops" aria-selected="false">Stops</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" id="pills-flights-tab" data-toggle="pill" href="#pills-flights" role="tab" aria-controls="pills-flights" aria-selected="false">Flights</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" id="pills-activities-tab" data-toggle="pill" href="#pills-activities" role="tab" aria-controls="pills-activities" aria-selected="true">Activities</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" id="pills-accommodations-tab" data-toggle="pill" href="#pills-accommodations" role="tab" aria-controls="pills-accommodations" aria-selected="true">Accommodations</a>
-				  </li>				  
-				</ul>
 				<div class="tab-content" id="pills-tabContent">
 				  <div class="tab-pane fade show active" id="pills-trips" role="tabpanel" aria-labelledby="pills-trips-tab">
-				  	<div class="row">
-				  		<% if @trips.empty? %>
-					  		<div class="col-12">
-				  				<h3 class="text-primary text-center">You have not created or joined any trips!</h3>
-				  			</div>
-			  				<%= link_to '<button class="btn btn-success my-1" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
-			  				<%= link_to '<button class="btn btn-success my-1" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-auto ml-1" %>
+				  	<!-- <div class="row"> -->
+				  		<% if @trips_upcoming_sorted.empty? %>
+				  			<div class="row">
+						  		<div class="col-12 mx-0">
+					  				<h3 class="text-primary text-center">You have not created or joined any trips!</h3>
+					  			</div>
+				  				<%= link_to '<button class="btn btn-success my-2" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
+				  				<%= link_to '<button class="btn btn-success my-2" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-auto ml-1" %>
+			  				</div>
 			  			<% else %>
 				  			<div class="row">
-							  	<div class="col-7 border-right border-primary ml-auto">
-							  		<h3 class="my-2 text-primary">Next Trip</h3>
+							  	<div class="col-8 border-right border-primary">
+							  		<h3 class="text-primary text-center">Next Upcoming Trip</h3>
 							  		<div class="row">
 							  			<div class="col-6 mx-auto">
 												<div class="card mx-auto my-auto">
-													<%= image_tag @trips.first.select_image, class: "card-img-top" %>
+													<%= image_tag @trips_upcoming_sorted.first.select_image, class: "card-img-top" %>
 												</div>
 										   	<div class="card-body">
-											   	<strong><p class="card-title text-center"><%= @trips.first.title %></p></strong>
-												   	<p class="col card-text text-center"><%= @trips.first.start.strftime("%b %-d, %Y") %> - <%= @trips.first.end.strftime("%b %-d, %Y") %></p>
+											   	<h3 class="card-title text-center"><%= @trips_upcoming_sorted.first.title %></h3>
+												   	<p class="col card-text text-center"><%= @trips_upcoming_sorted.first.start.strftime("%b %-d, %Y") %> - <%= @trips_upcoming_sorted.first.end.strftime("%b %-d, %Y") %></p>
 										   	</div>										
 							  			</div>
 							  			<div class="col-6 mx-auto my-auto">
-							  				<strong><p>Trip Description: </strong><%= @trips.first.description %></p>
-							  				<strong>Stops: </strong><%= link_to @trips.first.stops.length, trip_stops_path(@trips.first) %>
+							  				<strong><p>Trip Description: </strong><%= @trips_upcoming_sorted.first.description %></p>
+							  				<strong>Stops: </strong><%= link_to @trips_upcoming_sorted.first.stops.length, trip_stops_path(@trips_upcoming_sorted.first) %>
 						  					<ul>
-						  						<% if @trips.first.stops.empty? %>
+						  						<% if @trips_upcoming_sorted.first.stops.empty? %>
 						  							<li>No stops yet for this trip</li>
 					  							<% else %>
-							  						<%= @trips.first.stops.each do |stop| %>
-							  							<li><%= stop %></li>
-							  						<% end %>
+					  								<li>
+					  									<%= @trips_upcoming_sorted.first.stop_locations.join(", ") %>
+								  					</li>
 						  						<% end %>
 						  					</ul>
 							  				<strong>Other Travellers:</strong>
-												<% if @trips.first.group_trip %>
+												<% if @trips_upcoming_sorted.first.group_trip %>
 							  					<ul>
-							  						<% if @trips.first.users.length == 1 %>
+							  						<% if @trips_upcoming_sorted.first.users.length == 1 %>
 							  							<li>No other travellers on this trip</li>
 						  							<% else %>
-								  						<%= @trips.first.users.each do |user| %>
-								  							<li><%= user.name unless user.id == @user.id %></li>
-								  						<% end %>
+								  						<li>
+								  							<%= @trips_upcoming_sorted.first.travellers.join(", ") %>
+								  						</li>
 							  						<% end %>
 							  					</ul>		
 						  					<% else %>
@@ -78,18 +63,50 @@
 						  							<li>No other travellers on this trip</li>
 						  						</ul>
 						  					<% end %>
-						  					<p>Flights booked: <%= link_to @trips.first.flights.length, trip_flights_path(@trips.first) %></p>
-						  					<p>Activities booked: <%= link_to @trips.first.activities.length, trip_activities_path(@trips.first) %></p>
-						  					<p>Accommodations booked: <%= link_to @trips.first.accommodations.length, trip_accommodations_path(@trips.first) %></p>
+						  					<p>Flights booked: <%= link_to @trips_upcoming_sorted.first.flights.length, trip_flights_path(@trips_upcoming_sorted.first) %></p>
+						  					<p>Activities booked: <%= link_to @trips_upcoming_sorted.first.activities.length, trip_activities_path(@trips_upcoming_sorted.first) %></p>
+						  					<p>Accommodations booked: <%= link_to @trips_upcoming_sorted.first.accommodations.length, trip_accommodations_path(@trips_upcoming_sorted.first) %></p>
 							  			</div>
 							  		</div>
 							  	</div>
-							  	<div class="col-4 border-left border-primary mr-auto">
-							  		<h3 class="text-primary">Upcoming Trips</h3>
+							  	<div class="col-4 mx-auto">
+							  		<h3 class="text-primary text-center">All Trips</h3>
+							  			<div class="row">
+								  			<% if @trips_upcoming_sorted.length == 1 %>
+								  				<div class="col-12">
+								  					<h5 class="text-success text-center">Your next trip is the only trip you have created!</h5>
+								  				</div>
+								  				<%= link_to '<button class="btn btn-success my-2" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
+								  				<%= link_to '<button class="btn btn-success my-2" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-1 ml-auto" %>
+								  			<% else %>
+								  				<div class="col-12 mt-4">
+								  					<strong><p class="text-center">Number of Other Upcoming Trips: </strong><a href="#" id="user-upcoming-trips" name="<%= @user.id %>"><%= @trips_upcoming_sorted.length - 1 %></a></p>
+								  					<strong><p class="text-center">Cost of Other Upcoming Trips: </strong>
+								  						<% upcoming_total = 0 %>
+								  						<% @trips_upcoming_sorted[1..-1].each { |trip| upcoming_total += trip.total_costs } %>
+								  						$<%= upcoming_total %>
+								  					</p>
+								  					<strong><p class="text-center">Number of Past Trips: </strong><a href="#" id="user-trips" name="<%= @user.id %>"><%= @trips.length %></a></p>
+								  					<strong><p class="text-center">Cost of Past Trips: </strong>
+								  						<% past_total = 0 %>
+								  						<% @trips_past_sorted.each { |trip| past_total += trip.total_costs } %>
+								  						$<%= past_total %>
+								  					</p>
+								  					<strong><p class="text-center">Total Number of Trips: </strong><a href="#" id="user-upcoming-trips" name="<%= @user.id %>"><%= @trips_upcoming_sorted.length - 1 %></a></p>
+								  					<strong><p class="text-center">Total Cost of Trips: </strong>
+								  						<% total = 0 %>
+								  						<% @trips.each { |trip| total += trip.total_costs } %>
+								  						$<%= total %>
+								  					</p>
+							  					</div>
+								  				<%= link_to '<button class="btn btn-success my-2" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
+								  				<%= link_to '<button class="btn btn-success my-2" type="button">Join a Group Trip</button>'.html_safe, group_trip_path, class: "mr-auto ml-1" %>
+								  			<% end %>
+								  		</div>
 							  	</div>
 				  			</div>
 			  			<% end %>
-					  </div>
+					  <!-- </div> -->
 				  </div>
 				  <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
 				  	Bunch of info for stops.

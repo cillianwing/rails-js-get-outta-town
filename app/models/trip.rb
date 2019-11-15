@@ -22,6 +22,35 @@ class Trip < ApplicationRecord
     end
   end
 
+  def stop_locations
+    self.stops.collect do |stop|
+      stop.location
+    end
+  end
+
+  def flight_costs
+    total = 0
+    self.flights.each { |flight| total += flight[:cost] }
+    total
+  end
+
+  def activity_costs
+    total = 0
+    self.activities.each { |activity| total += activity[:cost] }
+    total
+  end
+
+  def accommodation_costs
+    total = 0
+    self.accommodations.each { |accommodation| total += accommodation[:cost] }
+    total
+  end
+
+  def total_costs
+    total = self.flight_costs + self.activity_costs + self.accommodation_costs
+    total
+  end
+
   def select_image
     month = self.start.to_s.split("-")[1].to_i
     if month == 1

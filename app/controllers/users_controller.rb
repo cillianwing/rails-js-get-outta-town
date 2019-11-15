@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   def index
     @trip = Trip.new
-    @trips = @user.trips.sort_by { |trip| trip[:start] }
+    @trips = @user.trips
+    @trips_upcoming_sorted = @user.trips.select { |trip| trip if trip[:start] > Date.today }.sort_by { |trip| trip[:start] }
+    @trips_past_sorted = @user.trips.select { |trip| trip if trip[:end] < Date.today }.sort_by { |trip| trip[:start] }
   end
 
   def new
