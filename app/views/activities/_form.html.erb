@@ -1,0 +1,49 @@
+<div class="form-group px-2">
+  <%= f.label :title, "Title:" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :description, "Description:" %>
+  <%= f.text_area :description, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :res_num, "Reservation Number:" %>
+  <%= f.text_field :res_num, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :start, "Start Date/Time: " %>
+  <%= f.datetime_field :start, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :end, "End Date/Time: " %>
+  <%= f.datetime_field :end, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :location, "Location:" %>
+  <%= f.text_field :location, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :address_1, "Address 1:" %>
+  <%= f.text_field :address_1, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :address_2, "Address 2:" %>
+  <%= f.text_field :address_2, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :cost, "Cost ($):" %>
+  <%= f.number_field :cost, value: number_to_currency(f.object.cost.to_f, delimiter: '', unit: ''), step: :any, class: "form-control" %>
+</div>
+
+<div class="form-group px-2">
+  <%= f.label :requirements, "Requirements (i.e. swim suit):" %>
+  <%= f.text_area :requirements, class: "form-control" %>
+</div>
