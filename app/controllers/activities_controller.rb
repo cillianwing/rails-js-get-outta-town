@@ -28,7 +28,7 @@ class ActivitiesController < ApplicationController
   def create
     if @activity = @trip.activities.create(activity_params)
       respond_to do |f|
-        f.html { redirect_to trip_flight_path(@trip, @activity) }
+        f.html { redirect_to trip_activity_path(@trip, @activity) }
         f.json {render json: @activity }
       end
     else
