@@ -32,7 +32,15 @@
           <a href="#" id="user-trip-stops" name="<%= @user.id %>">Specific Trip Stops</a>
         </li>
         <li>
-          <a id="">Add New Stop</a>
+          <div class="dropright">
+            <a href="#" id="user-new-stop" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add New Stop</a>
+            <div class="dropdown-menu p-0">
+              <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
+              <% @user.trips.each do |trip| %>
+                <%= link_to trip.title, new_trip_stop_path(trip), class: "text-center px-0 border-bottom" %>
+              <% end %>
+            </div>            
+          </div>
         </li>
       </ul>
     </li>
@@ -46,7 +54,15 @@
           <a href="#" id="user-trip-flights" name="<%= @user.id %>">Specific Trip Flights</a>
         </li>
         <li>
-          <a id="">Add New Flight</a>
+          <div class="dropright">
+            <a href="#" id="user-new-flight" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add New Flight</a>
+            <div class="dropdown-menu p-0">
+              <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
+              <% @user.trips.each do |trip| %>
+                <%= link_to trip.title, new_trip_flight_path(trip), class: "text-center px-0 border-bottom" %>
+              <% end %>
+            </div>            
+          </div>
         </li>
       </ul>
     </li>
@@ -60,7 +76,15 @@
           <a id="">Specific Trip Activities</a>
         </li>
         <li>
-          <a id="">Add New Activity</a>
+          <div class="dropright">
+            <a href="#" id="user-new-activity" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add New Activity</a>
+            <div class="dropdown-menu p-0">
+              <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
+              <% @user.trips.each do |trip| %>
+                <%= link_to trip.title, new_trip_activity_path(trip), class: "text-center px-0 border-bottom" %>
+              <% end %>
+            </div>            
+          </div>
         </li>
       </ul>
     </li>
@@ -74,7 +98,15 @@
           <a id="">Specific Trip Accommodations</a>
         </li>
         <li>
-          <a id="">Add New Accommodation</a>
+          <div class="dropright">
+            <a href="#" id="user-new-accommodation" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add New Accommodation</a>
+            <div class="dropdown-menu p-0">
+              <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
+              <% @user.trips.each do |trip| %>
+                <%= link_to trip.title, new_trip_accommodation_path(trip), class: "text-center px-0 border-bottom" %>
+              <% end %>
+            </div>            
+          </div>
         </li>
       </ul>
     </li>
