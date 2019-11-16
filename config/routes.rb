@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   get '/users/:id/all_stops', to: 'stops#all_stops', as: 'all_stops'
   get '/users/:id/all_flights', to: 'flights#all_flights', as: 'all_flights'
   get '/users/:id/all_activities', to: 'activities#all_activities', as: 'all_activities'
+  get '/users/:id/all_accommodations', to: 'accommodations#all_accommodations', as: 'all_accommodations'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

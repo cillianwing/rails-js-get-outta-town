@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
-    redirect_to trips_activities_path(@trip)
+    redirect_to trip_activities_path(@trip)
   end
 
   def all_flights
