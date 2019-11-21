@@ -13,16 +13,16 @@
 							<%= image_tag "trips.jpg", class: "card-img-top" %>
 						</div>
 					   <div class="card-body">
-			   			<h5 class="card-title text-center"><%= flight.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></h5>
-					   	<h5 class="card-title text-center"><%= flight.dep_loc %> - <%= flight.arr_loc %></h5>
+					   	<p class="card-title text-center font-weight-bold" style="font-size: 18px"><%= flight.departure.strftime("%b %-d, %Y %l:%M %p") %> - <%= flight.arrival.strftime("%b %-d, %Y %l:%M %p") %></p>
+					   	<p class="card-title text-center font-weight-bold" style="font-size: 16px"><%= flight.dep_loc %> -> <%= flight.arr_loc %></p>
 				   		<div class="row">
-						   	<p class="col card-text text-center">Airline: <%= flight.airline %></p>
-						   	<p class="col card-text text-center">Flight #: <%= flight.flight_num %></p>
-						   	<p class="col card-text text-center">Confirmation #: <%= flight.confirm_num %></p>
+						   	<p class="col card-text text-center">Airline:<br><%= flight.airline %></p>
+						   	<p class="col card-text text-center">Flight #:<br><%= flight.flight_num %></p>
+						   	<p class="col card-text text-center">Confirmation #:<br><%= flight.confirm_num %></p>
 					   	</div>
 				   		<div class="row">
 						   	<p class="col card-text text-center">Checked Bags: <%= flight.checked_bags %></p>
-						   	<p class="col card-text text-center">Cost: $<%= flight.cost %></p>
+						   	<p class="col card-text text-center">Cost: <%= number_to_currency(flight.cost) %></p>
 					   	</div>		
 							<div class="row my-2">
 								<%= link_to '<button class="btn btn-info btn-block" type="button">View Flight</button>'.html_safe, trip_flight_path(flight), class: "col mx-auto", style: "text-decoration: none" %>
