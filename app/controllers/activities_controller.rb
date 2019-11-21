@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
 	before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_action :set_trip, except: [:all_flights]
+  before_action :set_trip, except: [:all_activities]
   before_action :set_user
   before_action :require_login
   skip_before_action :verify_authenticity_token
@@ -52,7 +52,7 @@ class ActivitiesController < ApplicationController
     redirect_to trip_activities_path(@trip)
   end
 
-  def all_flights
+  def all_activities
     @activities = @user.trips.collect do |trip| 
       trip.activities.each do |activity|
         activity 
