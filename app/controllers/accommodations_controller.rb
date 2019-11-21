@@ -52,7 +52,7 @@ class AccommodationsController < ApplicationController
     redirect_to trip_accommodations_path(@trip)
   end
 
-  def all_flights
+  def all_accommodations
     @accommodations = @user.trips.collect do |trip| 
       trip.accommodations.each do |accommodation|
         accommodation 
