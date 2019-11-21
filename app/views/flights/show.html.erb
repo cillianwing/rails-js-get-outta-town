@@ -14,20 +14,20 @@
 			   	<p class="card-title text-center font-weight-bold" style="font-size: 16px"><%= @flight.dep_loc %> -> <%= @flight.arr_loc %></p>
 			   	<p class="card-title text-center font-weight-bold" style="font-size: 16px">Trip: <%= @trip.title %></p>
 		   		<div class="row">
-				   	<p class="col card-text text-center">Airline: <%= @flight.airline %></p>
-				   	<p class="col card-text text-center">Flight #: <%= @flight.flight_num %></p>
-				   	<p class="col card-text text-center">Confirmation #: <%= @flight.confirm_num %></p>
+				   	<p class="col card-text text-center">Airline:<br><%= @flight.airline %></p>
+				   	<p class="col card-text text-center">Flight #:<br><%= @flight.flight_num %></p>
+				   	<p class="col card-text text-center">Confirmation #:<br><%= @flight.confirm_num %></p>
 			   	</div>
 		   		<div class="row">
 				   	<p class="col card-text text-center">Checked Bags: <%= @flight.checked_bags %></p>
-				   	<p class="col card-text text-center">Cost: $<%= @flight.cost %></p>
+				   	<p class="col card-text text-center">Cost: <%= number_to_currency(@flight.cost) %></p>
 			   	</div>			   	
 					<div class="row my-2">
-						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Activity</button>'.html_safe, edit_trip_flight_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
-						<%= link_to '<button class="btn btn-success btn-block" type="button">Add New Activity</button>'.html_safe, new_trip_flight_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Flight</button>'.html_safe, edit_trip_flight_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add New Flight</button>'.html_safe, new_trip_flight_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
 			   	</div>
 			   	<div class="row my-2">
-						<%= link_to '<button class="btn btn-info btn-block" type="button">All flights</button>'.html_safe, trip_flights_path, class: "col mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-info btn-block" type="button">All Flights</button>'.html_safe, trip_flights_path, class: "col mx-auto", style: "text-decoration: none" %>
 					</div>
 					<p class="mb-0">To delete this flight from the trip, <%= link_to "click here.", trip_flight_path(@trip, @flight), method: :delete, data: { confirm: "Are you sure you wish to delete this flight?" }%></p>
 		   	</div>
