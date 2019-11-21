@@ -1,0 +1,43 @@
+<div class="wrapper">
+	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
+
+	<div class="container-fluid mx-2">
+		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+		<div class="row justify-content-center">
+			<% if @activities.length == 0 %>
+				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Add New Activity</button>'.html_safe, new_trip_activity_path(@trip), id: "new-activity", style: "text-decoration: none" %>
+			<% else %>
+				<% @activities.each_with_index do |activity, index| %>
+					<div class="col-sm-4 px-0 border border-primary rounded">
+						<div class="card">
+							<%= image_tag @trip.select_image, class: "card-img-top" %>
+						</div>
+				   	<div class="card-body">
+				   		<p class="card-title text-center font-weight-bold" style="font-size: 18px"><%= activity.title %><br><%= activity.start.strftime("%b %-d, %Y %l:%M %p") %> - <%= activity.end.strftime("%b %-d, %Y %l:%M %p") %></p>
+					   	<p class="card-title text-center font-weight-bold">Trip: <%= @trip.title %></p>
+					   	<p class="card-title text-center" style="height: 75px">Location: <%= activity.location %><br><%= activity.address_1 %><br><%= activity.address_2 %></p>
+				   		<div class="row">
+					   		<p class="col card-text text-center" style="height: 75px; overflow-y: auto">Description: <%= activity.description %></p>
+					   	</div>
+				   		<div class="row">
+						   	<p class="col card-text text-center">Reservation Number:<br><%= activity.res_num %></p>
+						   	<p class="col card-text text-center">Cost:<br><%= number_to_currency(activity.cost) %></p>
+					   	</div>
+				   		<div class="row">
+					   		<p class="col card-text text-center" style="height: 50px; overflow-y: auto">Requirements: <%= activity.requirements %></p>
+					   	</div>			  			   	
+							<div class="row my-2">
+								<%= link_to '<button class="btn btn-info btn-block" type="button">View Activity</button>'.html_safe, trip_activity_path(@trip, activity), class: "col mx-auto", style: "text-decoration: none" %>
+				   		</div>
+				   	</div>
+					</div>
+					<% if index + 1 % 3 == 0 %>
+						</div><div class="row">
+					<% elsif index == @activities.length %>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
