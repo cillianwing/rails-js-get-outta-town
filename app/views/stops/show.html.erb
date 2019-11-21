@@ -14,7 +14,7 @@
 			   	<h5 class="card-title text-center"><%= @stop.arr_date.strftime("%b %-d, %Y") %> - <%= @stop.dep_date.strftime("%b %-d, %Y") %></h5>
 			   	<strong><p class="card-title text-center">Trip: <%= @trip.title %></p></strong>
 		   		<div class="row">
-				   	<p class="col card-text text-center">Restrictions: <%= @stop.restrictions %></p>
+				   	<p class="col card-text text-center" style="height: 50px; overflow-y: auto">Restrictions: <%= @stop.restrictions %></p>
 			   	</div>
 					<div class="row my-2">
 						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Stop</button>'.html_safe, edit_trip_stop_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
