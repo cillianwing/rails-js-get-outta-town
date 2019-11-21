@@ -65,6 +65,10 @@
 					  					<p>Flights: <%= link_to "#{@trips_upcoming_sorted.first.flights.length} Booked", trip_flights_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Flight", new_trip_flight_path(@trips_upcoming_sorted.first) %></p>
 					  					<p>Activities: <%= link_to "#{@trips_upcoming_sorted.first.activities.length} Booked", trip_activities_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Activity", new_trip_activity_path(@trips_upcoming_sorted.first) %></p>
 					  					<p>Accommodations: <%= link_to "#{@trips_upcoming_sorted.first.accommodations.length} Booked", trip_accommodations_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Accommodation", new_trip_accommodation_path(@trips_upcoming_sorted.first) %></p>
+					  					<div class="text-center">
+					  						<%= link_to '<button class="btn btn-info col-5" type="button">View Trip</button>'.html_safe, user_trip_path(@user, @trips_upcoming_sorted.first) %>
+					  						<%= link_to '<button class="btn btn-warning col-5" type="button">Edit Trip</button>'.html_safe, edit_user_trip_path(@user, @trips_upcoming_sorted.first) %>
+					  					</div>
 						  			</div>
 						  		</div>
 						  	</div>
