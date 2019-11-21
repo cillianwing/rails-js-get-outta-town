@@ -64,7 +64,7 @@ class AccommodationsController < ApplicationController
   private
 
   def accommodation_params
-    params.require(:accommodation).permit(:booking_num, :type, :name, :address_1, :address_2, :check_in, :check_out, :cost, :location)
+    params.require(:accommodation).permit(:booking_num, :acc_type, :name, :address_1, :address_2, :check_in, :check_out, :cost, :location)
   end
 
   def set_trip
@@ -76,7 +76,7 @@ class AccommodationsController < ApplicationController
   end
 
   def set_accommodation
-  	@accommodation = accommodation.find(params[:id])
+  	@accommodation = Accommodation.find(params[:id])
   end
 
 end
