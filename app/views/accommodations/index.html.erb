@@ -1,0 +1,40 @@
+<div class="wrapper">
+	<%= render partial: '/shared/sidebar', locals: { user: @user } %>
+
+	<div class="container-fluid mx-2">
+		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+		<div class="row justify-content-center">
+			<% if @accommodations.length == 0 %>
+				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Add New Accommodation</button>'.html_safe, new_trip_accommodation_path(@trip), id: "new-accommodation", style: "text-decoration: none" %>
+			<% else %>
+				<% @accommodations.each_with_index do |accommodation, index| %>
+					<div class="col-sm-4 px-0 border border-primary rounded">
+						<div class="card">
+							<%= image_tag @trip.select_image, class: "card-img-top" %>
+						</div>
+				   	<div class="card-body">
+					   	<p class="card-title text-center font-weight-bold" style="font-size: 18px"><%= accommodation.name %><br><%= accommodation.check_in.strftime("%b %-d, %Y %l:%M %p") %> - <%= accommodation.check_out.strftime("%b %-d, %Y %l:%M %p") %></p>
+					   	<p class="card-title text-center font-weight-bold">Trip: <%= @trip.title %></p>
+					   	<p class="card-title text-center" style="height: 75px;">Location: <%= accommodation.location %><br><%= accommodation.address_1 %><br><%= accommodation.address_2 %></p>
+				   		<div class="row">
+					   		<p class="col card-text text-center">Type: <%= accommodation.acc_type %></p>
+					   	</div>
+				   		<div class="row">
+						   	<p class="col card-text text-center">Booking Number:<br><%= accommodation.booking_num %></p>
+						   	<p class="col card-text text-center">Cost:<br><%= number_to_currency(accommodation.cost) %></p>
+					   	</div>		   			   	
+							<div class="row my-2">
+								<%= link_to '<button class="btn btn-info btn-block" type="button">View Accommodation</button>'.html_safe, trip_accommodation_path(@trip, accommodation), class: "col mx-auto", style: "text-decoration: none" %>
+				   		</div>
+				   	</div>
+					</div>
+					<% if index + 1 % 3 == 0 %>
+						</div><div class="row">
+					<% elsif index == @accommodations.length %>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

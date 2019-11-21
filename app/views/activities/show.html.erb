@@ -12,7 +12,7 @@
 		   	<div class="card-body">
 			   	<p class="card-title text-center font-weight-bold" style="font-size: 18px"><%= @activity.title %><br><%= @activity.start.strftime("%b %-d, %Y %l:%M %p") %> - <%= @activity.end.strftime("%b %-d, %Y %l:%M %p") %></p>
 			   	<p class="card-title text-center font-weight-bold">Trip: <%= @trip.title %></p>
-			   	<p class="card-title text-center">Location: <%= @activity.location %><br><%= @activity.address_1 %><br><%= @activity.address_2 %></p>
+			   	<p class="card-title text-center" style="height: 75px">Location: <%= @activity.location %><br><%= @activity.address_1 %><br><%= @activity.address_2 %></p>
 		   		<div class="row">
 			   		<p class="col card-text text-center" style="height: 75px; overflow-y: auto">Description: <%= @activity.description %></p>
 			   	</div>
