@@ -25,6 +25,13 @@
 			   	<div style="height: 50px; overflow-y: auto">				   	
 				   	<p class="col card-text text-center">Travellers: <%= @trip.travellers.join(", ") %></p>				   	
 			   	</div>
+					<div class="row my-2">
+						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Trip</button>'.html_safe, edit_user_trip_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add New Trip</button>'.html_safe, new_user_trip_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+			   	</div>
+			   	<div class="row my-2">
+						<%= link_to '<button class="btn btn-info btn-block" type="button">All Trips</button>'.html_safe, user_trips_path, class: "col mx-auto", style: "text-decoration: none" %>
+					</div>			   	
 		   	</div>
 	   	</div>
 		</div>
