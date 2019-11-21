@@ -15,20 +15,27 @@
 			   		<p class="col card-text text-center" style="height: 50px; overflow-y: auto"><%= @trip.description %></p>
 			   	</div>
 			   	<div class="row">
-			   		<p class="col card-text mx-auto text-center" style="height: 25px">Stops: <%= @trip.stops.length %></p>
-			   		<p class="col card-text mx-auto text-center" style="height: 25px">Flights: <%= @trip.flights.length %></p>
+			   		<p class="col card-text mx-auto text-center" style="height: 25px">Stops: <%= link_to @trip.stops.length, trip_stops_path(@trip) %></p>
+			   		<p class="col card-text mx-auto text-center" style="height: 25px">Flights: <%= link_to @trip.flights.length, trip_flights_path(@trip) %></p>
 			   	</div>
 			   	<div class="row">
-			   		<p class="col card-text text-center" style="height: 25px">Activities: <%= @trip.activities.length %></p>
-			   		<p class="col card-text text-center" style="height: 25px">Accommodations: <%= @trip.accommodations.length %></p>
+			   		<p class="col card-text text-center" style="height: 25px">Activities: <%= link_to @trip.activities.length, trip_activities_path(@trip) %></p>
+			   		<p class="col card-text text-center" style="height: 25px">Accommodations: <%= link_to @trip.accommodations.length, trip_accommodations_path(@trip) %></p>
 			   	</div>
 			   	<div style="height: 50px; overflow-y: auto">				   	
 				   	<p class="col card-text text-center">Travellers: <%= @trip.travellers.join(", ") %></p>				   	
 			   	</div>
 					<div class="row my-2">
-						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Trip</button>'.html_safe, edit_user_trip_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
-						<%= link_to '<button class="btn btn-success btn-block" type="button">Add New Trip</button>'.html_safe, new_user_trip_path, class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add Stop</button>'.html_safe, new_trip_stop_path(@trip), class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add Flight</button>'.html_safe, new_trip_flight_path(@trip), class: "col-6 mx-auto", style: "text-decoration: none" %>
 			   	</div>
+					<div class="row my-2">
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add Activity</button>'.html_safe, new_trip_activity_path(@trip), class: "col-6 mx-auto", style: "text-decoration: none" %>
+						<%= link_to '<button class="btn btn-success btn-block" type="button">Add Accommodation</button>'.html_safe, new_trip_accommodation_path(@trip), class: "col-6 mx-auto", style: "text-decoration: none" %>
+			   	</div>			   	
+			   	<div class="row my-2">
+						<%= link_to '<button class="btn btn-warning btn-block" type="button">Edit Trip</button>'.html_safe, edit_user_trip_path, class: "col mx-auto", style: "text-decoration: none" %>
+					</div>			   				   	
 			   	<div class="row my-2">
 						<%= link_to '<button class="btn btn-info btn-block" type="button">All Trips</button>'.html_safe, user_trips_path, class: "col mx-auto", style: "text-decoration: none" %>
 					</div>			   	
