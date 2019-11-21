@@ -80,19 +80,19 @@
 						  					<strong><p class="text-center">Cost of Other Upcoming Trips: </strong>
 						  						<% upcoming_total = 0 %>
 						  						<% @trips_upcoming_sorted.each { |trip| upcoming_total += trip.total_costs } %>
-						  						$<%= upcoming_total %>
+						  						<%= number_to_currency(upcoming_total) %>
 						  					</p>
 						  					<strong><p class="text-center">Number of Past Trips: </strong><a href="#" id="user-past-trips" name="<%= @user.id %>"><%= @trips_past_sorted.length %></a></p>
 						  					<strong><p class="text-center">Cost of Past Trips: </strong>
 						  						<% past_total = 0 %>
 						  						<% @trips_past_sorted.each { |trip| past_total += trip.total_costs } %>
-						  						$<%= past_total %>
+						  						<%= number_to_currency(past_total) %>
 						  					</p>
 						  					<strong><p class="text-center">Total Number of Trips: </strong><a href="#" id="user-trips" name="<%= @user.id %>"><%= @trips.length %></a></p>
 						  					<strong><p class="text-center">Total Cost of Trips: </strong>
 						  						<% total = 0 %>
 						  						<% @trips.each { |trip| total += trip.total_costs } %>
-						  						$<%= total %>
+						  						<%= number_to_currency(total) %>
 						  					</p>
 					  					</div>
 						  				<%= link_to '<button class="btn btn-success my-2" type="button">Create New Trip</button>'.html_safe, new_user_trip_path(@user), class: "ml-auto mr-1" %>
@@ -101,18 +101,6 @@
 						  	</div>
 			  			</div>
 		  			<% end %>
-				  </div>
-				  <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
-				  	Bunch of info for stops.
-				  </div>
-				  <div class="tab-pane fade" id="pills-flights" role="tabpanel" aria-labelledby="pills-flights-tab">
-				  	Bunch of info for flights.
-				  </div>
-				  <div class="tab-pane fade" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
-				  	Bunch of info for activities.
-				  </div>
-				  <div class="tab-pane fade" id="pills-accommodations" role="tabpanel" aria-labelledby="pills-accommodations-tab">
-				  	Bunch of info for accommodations.
 				  </div>
 				</div>
 			</div>
