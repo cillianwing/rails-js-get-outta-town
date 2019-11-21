@@ -36,7 +36,7 @@
 						  			</div>
 						  			<div class="col-6 mx-auto my-auto">
 						  				<strong><p>Trip Description: </strong><%= @trips_upcoming_sorted.first.description %></p>
-						  				<strong>Stops: </strong><%= link_to @trips_upcoming_sorted.first.stops.length, trip_stops_path(@trips_upcoming_sorted.first) %>
+						  				<strong>Stops: </strong><%= link_to "#{@trips_upcoming_sorted.first.stops.length} Added", trip_stops_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Stop", new_trip_stop_path(@trips_upcoming_sorted.first) %>
 					  					<ul>
 					  						<% if @trips_upcoming_sorted.first.stops.empty? %>
 					  							<li>No stops yet for this trip</li>
@@ -62,9 +62,9 @@
 					  							<li>No other travellers on this trip</li>
 					  						</ul>
 					  					<% end %>
-					  					<p>Flights booked: <%= link_to @trips_upcoming_sorted.first.flights.length, trip_flights_path(@trips_upcoming_sorted.first) %></p>
-					  					<p>Activities booked: <%= link_to @trips_upcoming_sorted.first.activities.length, trip_activities_path(@trips_upcoming_sorted.first) %></p>
-					  					<p>Accommodations booked: <%= link_to @trips_upcoming_sorted.first.accommodations.length, trip_accommodations_path(@trips_upcoming_sorted.first) %></p>
+					  					<p>Flights: <%= link_to "#{@trips_upcoming_sorted.first.flights.length} Booked", trip_flights_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Flight", new_trip_flight_path(@trips_upcoming_sorted.first) %></p>
+					  					<p>Activities: <%= link_to "#{@trips_upcoming_sorted.first.activities.length} Booked", trip_activities_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Activity", new_trip_activity_path(@trips_upcoming_sorted.first) %></p>
+					  					<p>Accommodations: <%= link_to "#{@trips_upcoming_sorted.first.accommodations.length} Booked", trip_accommodations_path(@trips_upcoming_sorted.first) %> - <%= link_to "Add New Accommodation", new_trip_accommodation_path(@trips_upcoming_sorted.first) %></p>
 						  			</div>
 						  		</div>
 						  	</div>
