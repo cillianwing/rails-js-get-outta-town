@@ -86,7 +86,7 @@
       <a href="#activitiesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-hiking"></i> Activities</a>
       <ul class="collapse list-unstyled" id="activitiesSubmenu">
         <li>
-          <a id="">All My Activities</a>
+          <%= link_to "All My Activities", all_activities_path(@user) %>
         </li>
         <li>
           <div class="dropright">
@@ -116,11 +116,11 @@
       <a href="#accommodationsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-hotel"></i> Accommodations</a>
       <ul class="collapse list-unstyled" id="accommodationsSubmenu">
         <li>
-          <a id="">All My Accommodations</a>
+          <%= link_to "All My Accommodations", all_accommodations_path(@user) %>
         </li>
         <li>
           <div class="dropright">
-            <a href="#" id="user-trip-accommodation" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Specific Trip Accommodations</a>
+            <a href="#" id="user-trip-accommodation" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Specific Trip Acc.</a>
             <div class="dropdown-menu p-0">
               <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
               <% @user.trips.each do |trip| %>

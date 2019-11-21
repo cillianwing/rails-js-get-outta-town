@@ -23,7 +23,7 @@
 			   		<p class="col card-text text-center" style="height: 25px">Accommodations: <%= link_to trip.accommodations.length, trip_accommodations_path(trip) %></p>
 			   	</div>
 			   	<div style="height: 50px; overflow-y: auto">				   	
-				   	<p class="col card-text text-center">Travellers: <%= trip.travellers.join(", ") %></p>				   	
+				   	<p class="col card-text text-center">Travellers: <%= trip.travellers.join(", ") %></p>
 			   	</div>
 					<div class="row my-2">
 						<%= link_to '<button class="btn btn-info btn-block" type="button">View Trip</button>'.html_safe, user_trip_path(@user, trip), class: "col mx-auto", style: "text-decoration: none" %>
