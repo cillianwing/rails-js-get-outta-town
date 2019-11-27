@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     resources :flights
     resources :activities
     resources :accommodations
-    resources :reviews
   end
+
+  resources :reviews
 
   root 'home#index'
 

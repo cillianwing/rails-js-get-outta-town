@@ -4,6 +4,13 @@ class ReviewsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+  	@trips = Trip.past_trips
+  	@reviews = []
+  	@trips.each do |trip| 
+  		trip.reviews.each do |review|
+  			@reviews << review
+  		end
+  	end
   end
 
   def show
