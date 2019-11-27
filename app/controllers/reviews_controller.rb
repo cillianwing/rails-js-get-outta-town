@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
+  	@trips = @user.trips.past_trips
     @review = Review.new
   end
 
