@@ -15,6 +15,17 @@
           <a href="#" id="user-past-trips" name="<%= @user.id %>">Past Trips</a>
         </li>
         <li>
+          <div class="dropright">
+            <a href="#" id="user-trips-dropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Single Trip</a>
+            <div class="dropdown-menu p-0">
+              <h5 class="dropdown-header text-center font-weight-bold">Select Trip</h5>
+              <% @user.trips.each do |trip| %>
+                <%= link_to trip.title, user_trip_path(@user, trip), class: "text-center px-0 border-bottom" %>
+              <% end %>
+            </div>            
+          </div>
+        </li>        
+        <li>
           <a href="#" id="user-new-trip">Create a New Trip</a>
         </li>
         <li>

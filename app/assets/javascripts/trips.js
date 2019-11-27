@@ -155,7 +155,7 @@ class Trip {
 }
 
 Trip.prototype.tripCard = function() {
-	return (`
+	return(`
 			<div class="col-4 mx-0 px-0 border border-primary rounded">
 				<div class="card" style="height:275px">
 					<img src="/assets/${this.imageSelect()}" class="card-img-top" style="height: 100%">
@@ -163,7 +163,7 @@ Trip.prototype.tripCard = function() {
 				<div class="card-body">
 					<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
 					<div class="row">
-						<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+						<p class="col card-text text-center" style="height: 75px; overflow-y: auto">${this.description}</p>
 					</div>
 					<div class="row">
 						<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
@@ -175,7 +175,7 @@ Trip.prototype.tripCard = function() {
 					</div>
 			   	<div style="height: 50px; overflow-y: auto">				   	
 				   	<p class="col card-text text-center">Travellers: ${travellers(this)}</p>				   	
-			   	</div>					
+			   	</div>
 				</div>
 			</div>
 		`)
@@ -258,7 +258,7 @@ Trip.prototype.newTripShow = function() {
 					<div class="card-body">
 						<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
 						<div class="row">
-							<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+							<p class="col card-text text-center" style="height: 75px; overflow-y: auto">${this.description}</p>
 						</div>
 						<div class="row">
 							<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
@@ -360,7 +360,7 @@ Trip.prototype.groupTripShow = function() {
 			<div class="card-body">
 				<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
 				<div class="row">
-					<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
+					<p class="col card-text text-center" style="height: 75px; overflow-y: auto">${this.description}</p>
 				</div>
 				<div class="row">
 					<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
