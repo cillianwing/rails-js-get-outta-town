@@ -1,3 +1,5 @@
+// Need to refactor all JS files
+
 $(function() {
 	listenForAllTripsClick();
 	listenForUpcomingTripsClick();
