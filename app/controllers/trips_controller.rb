@@ -26,13 +26,14 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
-    if @trip.save
-      respond_to do |f|
+    respond_to do |f|
+      if @trip.save
         f.html { redirect_to user_trip_path(@user, @trip) }
-        f.json {render json: @trip }
+        f.json { render json: @trip }
+      else 
+        f.html { render :new }
+        f.json { render json: @trip.errors.full_messages, status: 400 }
       end
-    else
-      render :new
     end
   end
 

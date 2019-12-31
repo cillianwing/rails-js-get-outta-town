@@ -11,11 +11,11 @@ module TripsHelper
     @user.trips.each do |trip|
       if trip.id != self.id
         if self.start > trip.start && self.start < trip.end
-          errors.add(:start_date, "#{:start_date.to_s.split("_").join(" ").capitalize} cannot be during an existing trip.")
+          errors.add(:start_date, "cannot be during an existing trip.")
         elsif self.end > trip.start && self.end < trip.end
-          errors.add(:end_date, "#{:end_date.to_s.split("_").join(" ").capitalize} cannot be during an existing trip.")
+          errors.add(:end_date, "cannot be during an existing trip.")
         elsif self.start < trip.start && self.end > trip.end
-          errors.add(:trip_dates, "#{:trip_dates.to_s.split("_").join(" ").capitalize} cannot be overlapping with an existing trip.")
+          errors.add(:trip_dates, "cannot be overlapping with an existing trip.")
         end
       end
     end

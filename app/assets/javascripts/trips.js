@@ -133,9 +133,10 @@ function getPastTrips(userId) {
 	eventListeners();	
 }
 
-function listenForNewTripClick(userId) {
+function listenForNewTripClick() {
 	$('#user-new-trip').on('click', function(event) {
 		event.preventDefault();
+		let userId = $('a#user-new-trip')["0"]["name"];
 		$('#tripModal').modal('dispose');
 		$('div.modal-backdrop').remove();
 		$('#trip-modal-display').html(newTripModal(userId));
@@ -153,12 +154,17 @@ function listenForNewTripCreation(userId) {
 			url: `http://localhost:3000/users/${userId}/trips`,
 			data: values,
 			dataType: "json",
-			success(data) {
+			success: function(data) {
 				let newTrip = new Trip(data)
 				$('div.row').html("");
 				$('div.js-render-content').html("");
 				$('div.js-render-content').html(newTrip.newTripShow());
 				$('#tripModal').modal('hide');
+			},
+			error: function(data) {
+				let errors = data.responseJSON
+				$('div#new-modal-div').prepend(modalErrors(errors))
+				listenForNewTripCreation(userId);
 			}
 		})
 	})
@@ -217,7 +223,7 @@ function newTripModal(userId) {
 					<div class="modal-body">
 						<div class="info-form border rounded pt-3">
 							<img class="img-responsive center-block" style="width: 100%" src="/assets/global_travel.jpg">
-							<div class="info-form border rounded pt-3">
+							<div id="new-modal-div" class="info-form border rounded pt-3">
         				<form class="new_trip" id="new_trip" action="/users/${userId}/trips" accept-charset="UTF-8" method="post">
 
           				<div class="form-group px-2">
@@ -248,7 +254,7 @@ function newTripModal(userId) {
 
           				<input value="1" type="hidden" name="trip[creator_id]" id="trip_creator_id">
 
-          				<input id="trip-submit" type="submit" name="commit" value="Create Trip" class="form-group btn btn-success btn-block mx-auto" style="width: 95%" data-disable-with="Create Trip">
+          				<input id="trip-submit" type="submit" name="commit" value="Create Trip" class="form-group btn btn-success btn-block mx-auto" style="width: 95%">
           				<p class="mt-3 ml-2">* Required fields</p>
 								</form>      
 							</div>
@@ -258,6 +264,14 @@ function newTripModal(userId) {
 			</div>
 		</div>
 		`)
+}
+
+function modalErrors(errors) {
+	let errorDiv = "";
+	errors.forEach ( error => {
+		errorDiv += `<div class="alert alert-danger alert-dismissible fade show justify-content-center">${error}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
+	})
+	return errorDiv;
 }
 
 Trip.prototype.newTripShow = function() {
