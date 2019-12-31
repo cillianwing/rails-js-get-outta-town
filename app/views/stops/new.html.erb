@@ -8,6 +8,18 @@
 	    <div class="col-sm-4 pt-3">
 	      <%= image_tag "global_travel.jpg", class: "img-responsive center-block", style: "width: 100%" %>
 	      <div class="info-form border rounded pt-3 px-1">
+
+          <% if @stop.errors.any? %>
+            <% @stop.errors.full_messages.each do |message| %>
+              <div class="alert alert-danger alert-dismissible fade show justify-content-center mx-auto" style="width: 95%">
+                <%= message %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% end %>
+          <% end %>
+
 	        <%= form_for @stop, url: trip_stops_path, action: 'post', class: "form-inline justify-content-center" do |f| %>
 
 	          <%= render partial: 'form', locals: { f: f } %>

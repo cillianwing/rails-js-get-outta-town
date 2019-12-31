@@ -26,7 +26,8 @@ class StopsController < ApplicationController
   end
 
   def create
-    if @stop = @trip.stops.create(stop_params)
+    @stop = @trip.stops.new(stop_params)
+    if @stop.save
       respond_to do |f|
         f.html { redirect_to trip_stop_path(@trip, @stop) }
         f.json {render json: @stop }

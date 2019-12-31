@@ -2,7 +2,7 @@ module TripsHelper
 
   def start_before_end
     if self.start > self.end
-      errors.add(:start, "cannot be after end date")
+      errors.add(:start_date, "cannot be after end date.")
     end
   end
 
