@@ -1,12 +1,35 @@
 // Need to refactor all JS files
 
 $(function() {
+	eventListeners();
+})
+
+class Trip {
+	constructor(obj) {
+		let startDate = obj.start.split("-").join(", ")
+		let endDate = obj.end.split("-").join(", ")
+		this.id = obj.id 
+		this.title = obj.title
+		this.description = obj.description
+		this.start = new Date(startDate)
+		this.end = new Date(endDate)
+		this.groupTrip = obj.group_trip
+		this.creatorId = obj.creator_id
+		this.stops = obj.stops
+		this.users = obj.users
+		this.flights = obj.flights
+		this.activities = obj.activities
+		this.accommodations = obj.accommodations
+	}
+}
+
+function eventListeners() {
 	listenForAllTripsClick();
 	listenForUpcomingTripsClick();
 	listenForPastTripsClick();
 	listenForNewTripClick();
-	listenForGroupTripClick();
-})
+	listenForGroupTripClick();	
+}
 
 function listenForAllTripsClick() {
 	$('a#user-trips').on('click', function(event) {
@@ -37,6 +60,7 @@ function getTrips(userId) {
 			}
 		}
 	})
+	eventListeners();
 }
 
 function listenForUpcomingTripsClick() {
@@ -71,6 +95,7 @@ function getUpcomingTrips(userId) {
 			}
 		}
 	})
+	eventListeners();	
 }
 
 function listenForPastTripsClick() {
@@ -105,6 +130,7 @@ function getPastTrips(userId) {
 			}
 		}
 	})
+	eventListeners();	
 }
 
 function listenForNewTripClick(userId) {
@@ -133,27 +159,8 @@ function listenForNewTripCreation(userId) {
 				$('#tripModal').modal('hide');
 			}
 		})
-
 	})
-}
-
-class Trip {
-	constructor(obj) {
-		let startDate = obj.start.split("-").join(", ")
-		let endDate = obj.end.split("-").join(", ")
-		this.id = obj.id 
-		this.title = obj.title
-		this.description = obj.description
-		this.start = new Date(startDate)
-		this.end = new Date(endDate)
-		this.groupTrip = obj.group_trip
-		this.creatorId = obj.creator_id
-		this.stops = obj.stops
-		this.users = obj.users
-		this.flights = obj.flights
-		this.activities = obj.activities
-		this.accommodations = obj.accommodations
-	}
+	eventListeners();	
 }
 
 Trip.prototype.tripCard = function() {
@@ -316,6 +323,7 @@ function listenForTripConfirm(userId, newTrip) {
 			$('div.row').html(updatedGroupTrip.groupTripShow());
 		})
 	})
+	eventListeners();	
 }
 
 Trip.prototype.tripConfirmShow = function() {
@@ -459,6 +467,7 @@ function getTripStops(userId) {
 			}
 		}
 	})
+	eventListeners();	
 }
 
 Trip.prototype.tripStopsCard = function() {
@@ -510,6 +519,7 @@ function getTripFlights(userId) {
 			}
 		}
 	})
+	eventListeners();	
 }
 
 Trip.prototype.tripFlightsCard = function() {
