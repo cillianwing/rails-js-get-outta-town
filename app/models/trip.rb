@@ -1,4 +1,6 @@
 class Trip < ApplicationRecord
+  include TripsHelper
+
   scope :past_trips, -> { where("end < ?", Date.today) }
   scope :upcoming_trips, -> { where("start > ?", Date.today) }
   scope :group_trips, -> { where(group_trip: true) }
@@ -15,6 +17,9 @@ class Trip < ApplicationRecord
 
   has_many :bookings
   has_many :accommodations, through: :bookings
+
+  validates :title, :description, :start, :end, presence: { message: "%{attribute} cannot be blank." }
+  validate :start_before_end, :date_confirm
 
   def travellers
     self.users.collect do |user|

@@ -1,19 +1,19 @@
 <div class="form-group px-2">
-  <%= f.label :title, "Trip Title:" %>
-  <%= f.text_field :title, class: "form-control", placeholder: "i.e. Backpacking Thru Asia" %>
+  <%= f.label :title, "Trip Title*:" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "i.e. Backpacking Thru Asia", required: true %>
 </div>
 
 <div class="form-group px-2">
-  <%= f.label :description, "Description:" %>
-  <%= f.text_area :description, class: "form-control", placeholder: "Please write a short description of your trip here!" %>
+  <%= f.label :description, "Description*:" %>
+  <%= f.text_area :description, class: "form-control", placeholder: "Please write a short description of your trip here!", required: true %>
 </div>
 
 <div class="form-group px-2">
-  <%= f.label :start, "Start Date: " %>
-  <%= f.date_field :start, class: "form-control" %>
+  <%= f.label :start, "Start Date*:" %>
+  <%= f.date_field :start, class: "form-control", required: true %>
 </div>
 
 <div class="form-group px-2">
-  <%= f.label :end, "End Date: " %>
-  <%= f.date_field :end, class: "form-control" %>
+  <%= f.label :end, "End Date*:" %>
+  <%= f.date_field :end, class: "form-control", required: true %>
 </div>
