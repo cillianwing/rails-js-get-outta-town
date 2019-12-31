@@ -3,6 +3,7 @@
 
 	<div class="container-fluid mx-2">
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+		<%= render partial: '/shared/js_divs', locals: { user: @user } %>
 		<div class="row justify-content-center">
 			<% if @accommodations.length == 0 %>
 				<%= link_to '<button class="btn btn-info btn-block my-1" type="button">Add New Accommodation</button>'.html_safe, new_trip_accommodation_path(@trip), id: "new-accommodation", style: "text-decoration: none" %>

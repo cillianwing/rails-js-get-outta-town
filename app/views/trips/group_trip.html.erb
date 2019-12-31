@@ -3,6 +3,7 @@
 
 	<div class="container-fluid mx-2">
 		<%= render partial: '/shared/topnav', locals: { user: @user } %>
+		<%= render partial: '/shared/js_divs', locals: { user: @user } %>
 		<div class="row justify-content-center">
 			<% if @trips.empty? %>
 				<h5>No group trips with spots available.</h5></div>
