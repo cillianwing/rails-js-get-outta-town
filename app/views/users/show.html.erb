@@ -29,12 +29,24 @@
 
 			<div class="col-sm-4 mx-2 mt-3 border border-info rounded">
 				<h4 class="form-inline justify-content-center py-3" style="color: teal"><i class="fas fa-plane-departure"></i> User Trip Statistics</h4>
-				<p>Total Trips Taken</p>
-				<p>Total Cost of Trips</p>
-				<p>Upcoming Trips</p>
-				<p>Expected Cost of Trip</p>
-				<p>Number of Places Visited</p>
-				<p>Past Travelling Partners</p>
+				<strong><p class="text-center">Total Trips Taken: </strong><%= @trips_past.length %></p>
+				<strong><p class="text-center">Total Cost of Trips Taken: </strong>
+					<% total_cost = 0 %>
+					<% @trips_past.each { |trip| 
+						total_cost += trip.total_costs } %>
+					<%= number_to_currency(total_cost) %>
+				</p>
+				<strong><p class="text-center">Number of Places Visited: </strong><%= @stops_past.length %></p>
+				<strong><p class="text-center">Past Travelling Partners: </strong>
+					<%= @travelling_partners.join(", ") %>
+				</p>				
+				<strong><p class="text-center">Upcoming Trips: </strong><%= @trips_upcoming.length %></p>
+				<strong><p class="text-center">Expected Cost of Upcoming Trips: </strong>
+					<% upcoming_cost = 0 %>
+					<% @trips_upcoming.each { |trip| 
+						upcoming_cost += trip.total_costs } %>
+					<%= number_to_currency(upcoming_cost) %>
+				</p>
 			</div>
 		</div>
 

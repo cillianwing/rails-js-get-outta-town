@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     if current_user.id != params[:id].to_i
       redirect_to users_path, flash: { warning: "You cannot view another user's profile." }
     end
+    @trips_upcoming = @user.trips.select { |trip| trip if trip[:start] > Date.today }
+    @stops_upcoming = @trips_upcoming.collect { |trip| trip.stops }.flatten
+    @trips_past = @user.trips.select { |trip| trip if trip[:end] < Date.today }
+    @stops_past = @trips_past.collect { |trip| trip.stops }.flatten
+    @travelling_partners = @trips_past.collect { |trip| trip.travellers }.flatten
   end
 
   def edit
