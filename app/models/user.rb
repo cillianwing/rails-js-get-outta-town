@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
+  has_secure_password(option={validations: false})
 
-  validates :password, presence: true
+  validates :password, presence: { message: "Password cannot be blank." }, confirmation: { message: "Password and Confirm Password must match." }
   validates :email, presence: true, uniqueness: { message: "%{attribute} already taken." }
   has_and_belongs_to_many :trips
 end

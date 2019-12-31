@@ -1,43 +1,45 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 mx-auto mt-3">
-      <%= image_tag "global_travel.jpg", class: "img-responsive center-block", style: "width: 100%" %>
+      <%= link_to image_tag("global_travel.jpg", class: "img-responsive center-block", style: "width: 100%"), root_path %>
 
       <div class="info-form border rounded pt-3">
 
-				<% flash.each do |key, value| %>
-				  <div class="alert alert-<%= key %> alert-dismissible fade show justify-content-center">
-				    <%= value %>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				      <span aria-hidden="true">&times;</span>
-				    </button>
-				  </div>
-				<% end %>
+		    <% if @user.errors.any? %>
+		    	<% @user.errors.messages.each do |attr, message| %>
+			      <div class="alert alert-danger alert-dismissible fade show justify-content-center">
+			        <%= message.first %>
+					    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					      <span aria-hidden="true">&times;</span>
+					    </button>
+				    </div>
+		      <% end %>
+		    <% end %>
 
         <%= form_for @user, class: "form-inline justify-content-center" do |f| %>
 
 					<div class="form-group px-2">
-					  <%= f.label :email, "Email:" %>
-					  <%= f.email_field :email, class: "form-control" %>
+					  <%= f.label :email, "Email*:" %>
+					  <%= f.email_field :email, class: "form-control", required: true %>
 					</div>
 
 				  <div class="form-group px-2">
-				    <%= f.label :password %>
+				    <%= f.label :password, "Password*:" %>
 				    <%= f.password_field :password, class: "form-control" %>
 				  </div>
 
 				  <div class="form-group px-2">
-				    <%= f.label :password_confirmation, "Confirm Password" %><br />
+				    <%= f.label :password_confirmation, "Confirm Password*:" %><br />
 				    <%= f.password_field :password_confirmation, class: "form-control" %>
 				  </div>
 
 					<div class="form-group px-2">
-					  <%= f.label :name, "Name: " %>
+					  <%= f.label :name, "Name:" %>
 					  <%= f.text_field :name, class: "form-control" %>
 					</div>
 
 					<div class="form-group px-2">
-					  <%= f.label :location, "Location: " %>
+					  <%= f.label :location, "Location:" %>
 					  <%= f.text_field :location, class: "form-control" %>
 					</div>
 
@@ -46,11 +48,12 @@
 					  <%= f.text_area :bio, class: "form-control" %>
 					</div>
 
-          <%= f.submit "Update User", class: "form-group btn btn-success btn-block" %>
+          <%= f.submit "Create User", class: "form-group btn btn-success btn-block mx-auto", style: "width: 95%" %>
 
-	        <p class="login-callout mt-3">
+	        <p class="login-callout mt-3 ml-2">
 	          Already have an account? <%= link_to "Log in.", login_path %>
 	        </p>
+	        <p class="login-callout mt-3 ml-2">* Required fields</p>
 	        
         <% end %>
       </div>
