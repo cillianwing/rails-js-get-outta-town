@@ -25,27 +25,27 @@ function signUpModal() {
 						<form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
 
 							<div class="form-group px-2">
-							  <label for="user_email">Email:</label>
+							  <label for="user_email">Email*:</label>
 							  <input class="form-control" type="email" name="user[email]" id="user_email">
 							</div>
 
 						  <div class="form-group px-2">
-						    <label for="user_password">Password</label>
+						    <label for="user_password">Password*:</label>
 						    <input class="form-control" type="password" name="user[password]" id="user_password">
 						  </div>
 
 						  <div class="form-group px-2">
-						    <label for="user_password_confirmation">Confirm Password</label><br>
+						    <label for="user_password_confirmation">Confirm Password*:</label><br>
 						    <input class="form-control" type="password" name="user[password_confirmation]" id="user_password_confirmation">
 						  </div>
 
 							<div class="form-group px-2">
-							  <label for="user_name">Name: </label>
+							  <label for="user_name">Name:</label>
 							  <input class="form-control" type="text" name="user[name]" id="user_name">
 							</div>
 
 							<div class="form-group px-2">
-							  <label for="user_location">Location: </label>
+							  <label for="user_location">Location:</label>
 							  <input class="form-control" type="text" name="user[location]" id="user_location">
 							</div>
 
@@ -54,11 +54,12 @@ function signUpModal() {
 							  <textarea class="form-control" name="user[bio]" id="user_bio"></textarea>
 							</div>
 
-		          <input type="submit" name="commit" value="Create User" class="form-group btn btn-success btn-block" data-disable-with="Update User">
+		          <input type="submit" name="commit" value="Create User" class="form-group btn btn-success btn-block mx-auto" style="width: 95%">
 
-			        <p class="login-callout mt-3">
+			        <p class="login-callout mt-3 ml-2">
 			          Already have an account? <a id="login-link" href="/">Log In<a>
 			        </p>
+			        <p class="login-callout mt-3 ml-2">* Required fields</p>			        
 
 						</form>				
 					</div>
