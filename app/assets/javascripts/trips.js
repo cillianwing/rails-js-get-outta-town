@@ -136,6 +136,8 @@ function getPastTrips(userId) {
 function listenForNewTripClick(userId) {
 	$('#user-new-trip').on('click', function(event) {
 		event.preventDefault();
+		$('#tripModal').modal('dispose');
+		$('div.modal-backdrop').remove();
 		$('#trip-modal-display').html(newTripModal(userId));
 		$('#tripModal').modal('show');
 		listenForNewTripCreation(userId);
@@ -208,7 +210,7 @@ function newTripModal(userId) {
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title">Create New Trip Below:</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -219,23 +221,23 @@ function newTripModal(userId) {
         				<form class="new_trip" id="new_trip" action="/users/${userId}/trips" accept-charset="UTF-8" method="post">
 
           				<div class="form-group px-2">
-  									<label for="trip_title">Trip Title:</label>
-  									<input class="form-control" placeholder="i.e. Backpacking Thru Asia" type="text" name="trip[title]" id="trip_title">
+  									<label for="trip_title">Trip Title*:</label>
+  									<input class="form-control" placeholder="i.e. Backpacking Thru Asia" type="text" name="trip[title]" id="trip_title" required>
 									</div>
 
 									<div class="form-group px-2">
-  									<label for="trip_description">Description:</label>
-  									<textarea class="form-control" placeholder="Please write a short description of your trip here!" name="trip[description]" id="trip_description"></textarea>
+  									<label for="trip_description">Description*:</label>
+  									<textarea class="form-control" placeholder="Please write a short description of your trip here!" name="trip[description]" id="trip_description" required></textarea>
 									</div>
 
 									<div class="form-group px-2">
-									  <label for="trip_start">Start Date: </label>
-									  <input class="form-control" type="date" name="trip[start]" id="trip_start">
+									  <label for="trip_start">Start Date*: </label>
+									  <input class="form-control" type="date" name="trip[start]" id="trip_start" required>
 									</div>
 
 									<div class="form-group px-2">
-									  <label for="trip_end">End Date: </label>
-									  <input class="form-control" type="date" name="trip[end]" id="trip_end">
+									  <label for="trip_end">End Date*: </label>
+									  <input class="form-control" type="date" name="trip[end]" id="trip_end" required>
 									</div>
 
 
@@ -246,7 +248,8 @@ function newTripModal(userId) {
 
           				<input value="1" type="hidden" name="trip[creator_id]" id="trip_creator_id">
 
-          				<input id="trip-submit" type="submit" name="commit" value="Create Trip" class="form-group btn btn-success btn-block" data-disable-with="Create Trip">
+          				<input id="trip-submit" type="submit" name="commit" value="Create Trip" class="form-group btn btn-success btn-block mx-auto" style="width: 95%" data-disable-with="Create Trip">
+          				<p class="mt-3 ml-2">* Required fields</p>
 								</form>      
 							</div>
 						</div>
