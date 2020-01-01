@@ -177,14 +177,14 @@ function listenForNewTripCreation(userId) {
 
 Trip.prototype.tripCard = function() {
 	return(`
-			<div class="col-4 mx-0 px-0 border border-primary rounded">
+			<div class="col-4 px-0 border border-primary rounded">
 				<div class="card" style="height:275px">
 					<img src="/assets/${this.imageSelect()}" class="card-img-top" style="height: 100%">
 				</div>
 				<div class="card-body">
 					<p class="card-title text-center text-dark font-weight-bold" style="font-size: 18px; height: 50px">${this.title}:<br>${this.start.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })} - ${this.end.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}</p>
 					<div class="row">
-						<p class="col card-text text-center" style="height: 75px; overflow-y: auto">${this.description}</p>
+						<p class="col card-text text-center" style="height: 50px; overflow-y: auto">${this.description}</p>
 					</div>
 					<div class="row">
 						<p class="col card-text mx-auto text-center" style="height: 25px">Stops: ${this.stops.length}</p>
@@ -203,11 +203,11 @@ Trip.prototype.tripCard = function() {
 }
 
 function showTripsIndex(arr) {
-	let indexString = `<div class="row justify-content-center mb-2" style="height: 525px">`;
+	let indexString = `<div class="row justify-content-center" style="height: 525px">`;
 	for (let i = 0; i < arr.length; i++) {
 		indexString += arr[i].tripCard();
 		if ((i + 1) % 3 === 0) {
-			indexString += (`</div><div class="row justify-content-center mb-2" style="height: 525px">`)
+			indexString += (``)
 		}
 	}
 	return indexString;
