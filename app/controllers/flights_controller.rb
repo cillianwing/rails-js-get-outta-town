@@ -27,15 +27,10 @@ class FlightsController < ApplicationController
   end
 
   def create
-    @flight = @trip.flights.new(flight_params)
-    if @flight.save
-      @trip.flights << @flight
-      respond_to do |f|
-        f.html { redirect_to trip_flight_path(@trip, @flight) }
-        f.json {render json: @flight }
-      end
+    if @flight = @trip.flights.create(flight_params)
+      redirect_to trip_flight_path(@trip, @flight)
     else
-      render :new
+      render :new 
     end
   end
 
