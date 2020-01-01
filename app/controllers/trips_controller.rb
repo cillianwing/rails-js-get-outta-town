@@ -30,7 +30,7 @@ class TripsController < ApplicationController
       if @trip.valid?
         @valid_trip = @user.trips.create(trip_params)
         f.html { redirect_to user_trip_path(@user, @valid_trip) }
-        f.json { render json: @trip }
+        f.json { render json: @valid_trip }
       else 
         f.html { render :new }
         f.json { render json: @trip.errors.full_messages, status: 400 }
