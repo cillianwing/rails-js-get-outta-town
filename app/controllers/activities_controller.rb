@@ -27,11 +27,9 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    if @activity = @trip.activities.create(activity_params)
-      respond_to do |f|
-        f.html { redirect_to trip_activity_path(@trip, @activity) }
-        f.json {render json: @activity }
-      end
+    if @trip.activities.create(activity_params)
+      @activity = Activity.find(@trip.activities.last.id)
+      redirect_to trip_activity_path(@trip, @activity)
     else
       render :new
     end

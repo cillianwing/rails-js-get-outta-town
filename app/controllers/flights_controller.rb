@@ -27,7 +27,8 @@ class FlightsController < ApplicationController
   end
 
   def create
-    if @flight = @trip.flights.create(flight_params)
+    if @trip.flights.create(flight_params)
+      @flight = Flight.find(@trip.flights.last.id)
       redirect_to trip_flight_path(@trip, @flight)
     else
       render :new 

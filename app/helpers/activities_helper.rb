@@ -16,9 +16,9 @@ module ActivitiesHelper
     end
   end 
 
-  def activites_date_confirm
+  def activities_date_confirm
   	@trip = Trip.find_by(id: params[:trip_id])
-  	@activites = @trip.activites
+  	@activities = @trip.activities
   	@activities.each do |activity|
   		if activity.id != self.id 
   			if self.start > activity.start && self.start < activity.end 
