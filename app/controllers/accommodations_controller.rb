@@ -3,6 +3,7 @@ class AccommodationsController < ApplicationController
   before_action :set_trip, except: [:all_flights]
   before_action :set_user
   before_action :require_login
+  before_action :helper_params
   skip_before_action :verify_authenticity_token
 
   def index
@@ -26,11 +27,10 @@ class AccommodationsController < ApplicationController
   end
 
   def create
-    if @accommodation = @trip.accommodations.create(accommodation_params)
-      respond_to do |f|
-        f.html { redirect_to trip_accommodation_path(@trip, @accommodation) }
-        f.json {render json: @accommodation }
-      end
+    @accommodation = Accommodation.new(accommodation_params)
+    if @accommodation.valid?
+      @valid_accommodation = @trip.accommodations.create(accommodation_params)
+      redirect_to trip_accommodation_path(@trip, @valid_accommodation)
     else
       render :new
     end
@@ -78,5 +78,9 @@ class AccommodationsController < ApplicationController
   def set_accommodation
   	@accommodation = Accommodation.find(params[:id])
   end
+
+  def helper_params
+    AccommodationsHelper.params = params
+  end    
 
 end
