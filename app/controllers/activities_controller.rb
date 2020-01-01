@@ -27,9 +27,10 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    if @trip.activities.create(activity_params)
-      @activity = Activity.find(@trip.activities.last.id)
-      redirect_to trip_activity_path(@trip, @activity)
+    @activity = Activity.new(activity_params)
+    if @activity.valid?
+      @valid_activity = @trip.activities.create(activity_params)
+      redirect_to trip_activity_path(@trip, @valid_activity)
     else
       render :new
     end
