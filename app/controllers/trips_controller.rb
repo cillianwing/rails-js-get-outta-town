@@ -27,8 +27,9 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     respond_to do |f|
-      if @trip.save
-        f.html { redirect_to user_trip_path(@user, @trip) }
+      if @trip.valid?
+        @valid_trip = @user.trips.create(trip_params)
+        f.html { redirect_to user_trip_path(@user, @valid_trip) }
         f.json { render json: @trip }
       else 
         f.html { render :new }
