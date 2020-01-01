@@ -163,6 +163,10 @@ function listenForNewTripCreation(userId) {
 			},
 			error: function(data) {
 				let errors = data.responseJSON
+				$('#tripModal').modal('dispose');
+				$('div.modal-backdrop').remove();
+				$('#trip-modal-display').html(newTripModal(userId));
+				$('#tripModal').modal('show');				
 				$('div#new-modal-div').prepend(modalErrors(errors))
 				listenForNewTripCreation(userId);
 			}
