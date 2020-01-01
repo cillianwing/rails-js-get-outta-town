@@ -3,6 +3,7 @@ class FlightsController < ApplicationController
   before_action :set_trip, except: [:all_flights]
   before_action :set_user
   before_action :require_login
+  before_action :helper_params
   skip_before_action :verify_authenticity_token
 
   def index
@@ -26,7 +27,9 @@ class FlightsController < ApplicationController
   end
 
   def create
-    if @flight = @trip.flights.create(flight_params)
+    @flight = @trip.flights.new(flight_params)
+    if @flight.save
+      @trip.flights << @flight
       respond_to do |f|
         f.html { redirect_to trip_flight_path(@trip, @flight) }
         f.json {render json: @flight }
@@ -77,6 +80,10 @@ class FlightsController < ApplicationController
 
   def set_flight
   	@flight = Flight.find(params[:id])
+  end
+
+  def helper_params
+    FlightsHelper.params = params
   end
 
 end
