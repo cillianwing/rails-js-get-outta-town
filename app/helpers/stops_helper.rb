@@ -2,7 +2,7 @@ module StopsHelper
 
   def stop_start_before_end
     if self.arr_date > self.dep_date
-      errors.add(:arrival_date, "cannot be after departure_date.")
+      errors.add(:arrival_date, "cannot be after departure date.")
     end
   end
 
