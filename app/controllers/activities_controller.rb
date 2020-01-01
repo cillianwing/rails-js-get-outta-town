@@ -3,6 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :set_trip, except: [:all_activities]
   before_action :set_user
   before_action :require_login
+  before_action :helper_params
   skip_before_action :verify_authenticity_token
 
   def index
@@ -78,5 +79,9 @@ class ActivitiesController < ApplicationController
   def set_activity
   	@activity = Activity.find(params[:id])
   end
+
+  def helper_params
+    ActivitiesHelper.params = params
+  end  
 
 end
