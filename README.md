@@ -1,24 +1,19 @@
-# README
+# Get Outta Town! - Rails/JS Flatiron Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This multi-page web app allows the user to create and keep track of upcoming and past trips. Additionally, user is able to record specific details for each trip such as flights, activities, and accommodations.
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+Run `rails s` in the terminal and navigate to  http://localhost:3000 to get to using the app!
 
-* System dependencies
+## Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/cillianwing/instrument-manager-sinatra. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-* Database creation
+## License
 
-* Database initialization
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-* How to run the test suite
+## Code of Conduct
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Everyone interacting in the InstrumentManager project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/cillianwing/instrument-manager-sinatra/blob/master/CODE_OF_CONDUCT.md).
