@@ -1,16 +1,16 @@
 <div class="form-group px-2">
   <%= f.label :location, "Trip Title:" %>
-  <%= f.text_field :location, class: "form-control", placeholder: "i.e. Florence, Italy" %>
+  <%= f.text_field :location, class: "form-control", placeholder: "i.e. Florence, Italy", required: true %>
 </div>
 
 <div class="form-group px-2">
   <%= f.label :arr_date, "Arrival Date: " %>
-  <%= f.date_field :arr_date, class: "form-control" %>
+  <%= f.date_field :arr_date, class: "form-control", required: true %>
 </div>
 
 <div class="form-group px-2">
   <%= f.label :dep_date, "Departure Date: " %>
-  <%= f.date_field :dep_date, class: "form-control" %>
+  <%= f.date_field :dep_date, class: "form-control", required: true %>
 </div>
 
 <div class="form-group px-2">
