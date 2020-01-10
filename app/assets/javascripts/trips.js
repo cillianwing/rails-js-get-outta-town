@@ -49,6 +49,19 @@ function getTrips(userId) {
 			data.forEach(function(x) {
 				allTrips.push(new Trip(x))
 			})
+			allTrips.sort(function(a, b) {
+			  let nameA = a.title.toUpperCase(); // ignore upper and lowercase
+			  let nameB = b.title.toUpperCase(); // ignore upper and lowercase
+			  if (nameA < nameB) {
+			    return -1;
+			  }
+			  if (nameA > nameB) {
+			    return 1;
+			  }
+
+			  // names must be equal
+			  return 0;
+			});
 			if (allTrips.length === 0) {
 				$('div.row').html("");
 				$('div.js-render-content').html("");
